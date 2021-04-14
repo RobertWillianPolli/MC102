@@ -2,7 +2,7 @@
 
 # Script para testar tarefas de laboratório de MC102 em ambiente GNU/Linux.
 
-# Uso: python3 testador.py
+# Uso: python3 testador.py NUMERO_DO_LABORATORIO
 
 # O programa lab<x>.py será testado com todos os arquivos arq<i>.in
 # encontrados no diretório corrente. Os testes serão iniciados com i
@@ -16,18 +16,21 @@
 import os
 import sys
 import re
+import argparse
 
 # Imprime as saídas do programa e do gabarito
 output = True
 
-path = os.path.dirname(os.path.abspath("__file__"))
-os.chdir(path)
+parser = argparse.ArgumentParser()
+parser.add_argument("num_lab")
+args = parser.parse_args()
 
-r = re.compile(r'lab\d\d.py')
-for file in os.listdir():
-    if r.match(file):
-        labfile = file
-        break
+path = os.path.dirname(os.path.abspath("__file__"))
+print(f'{path}/Lab{int(args.num_lab):02d}')
+os.chdir(f'{path}/Lab{int(args.num_lab):02d}')
+
+if os.path.exists(f'./lab{int(args.num_lab):02d}.py'):
+    labfile = f'lab{int(args.num_lab):02d}.py'
 
 else:
     print("Código do laboratório não encontrado.")
