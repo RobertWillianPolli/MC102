@@ -23,6 +23,7 @@ output = True
 
 parser = argparse.ArgumentParser()
 parser.add_argument("num_lab")
+parser.add_argument("--test", default = 0)
 args = parser.parse_args()
 
 path = os.path.dirname(os.path.abspath("__file__"))
@@ -36,7 +37,10 @@ else:
     print("Código do laboratório não encontrado.")
     exit(0)
 
-i = 1
+if args.test == 0:
+    i = 1
+else:
+    i = int(args.test)
 pasta = int(labfile.split('.')[0][-2:])
 testfile = "./aux{:02d}/open/arq{:02d}.in".format(pasta, i)
 
@@ -73,5 +77,7 @@ while (os.path.exists(testfile)):
 
     os.remove(outfile)
     os.remove(difffile)
+    if args.test != 0:
+        break
     i = i + 1
     testfile = "./aux{:02d}/open/arq{:02d}.in".format(pasta, i)
