@@ -18,16 +18,21 @@ alcance = int(input())
 bau_encontrado = 0
 
 for i in range(num_sensores):
-    linha, coluna = [int(i) for i in (input().split(" "))]
-    print(linha, coluna)
+    coluna, linha = [int(i) for i in (input().split(" "))]
+
+    coluna -= 1
+    linha  -= 1
+
     for passo in range(alcance+1):
-        # Check Leste
+        # Check Leste and actual position
         if (passo+coluna) < 8:
             if campo[linha][coluna+passo] == "x":
                 bau_encontrado += 1
+
             elif campo[linha][coluna+passo] == "o":
                 break
 
+    for passo in range(1, alcance+1):
         # Check Oeste
         if (passo-coluna) >= 0:
             if campo[linha][coluna - passo] == "x":
@@ -36,7 +41,7 @@ for i in range(num_sensores):
             elif campo[linha][coluna - passo] == "o":
                 break
 
-    for passo in range(alcance+1):
+    for passo in range(1, alcance+1):
         # Check Norte
         if (passo+linha) < 8:
             if campo[linha+passo][coluna] == "x":
@@ -45,6 +50,7 @@ for i in range(num_sensores):
             elif campo[linha+passo][coluna] == "o":
                 break
 
+    for passo in range(1, alcance+1):
         # Check Sul
         if (passo-coluna) >= 0:
             if campo[linha][coluna - passo] == "x":
