@@ -13,50 +13,52 @@ for i in range(8):
 
 # Leitura e processamento dos sensores
 num_sensores = int(input())
-alcance = int(input())
+alcance = int(input()) + 1
 
 bau_encontrado = 0
+positions = []
 
 for i in range(num_sensores):
-    coluna, linha = [int(i) for i in (input().split(" "))]
+    linha, coluna = [int(i) for i in (input().split(" "))]
 
-    coluna -= 1
-    linha  -= 1
-
-    for passo in range(alcance+1):
-        # Check Leste and actual position
+    for passo in range(alcance):
+        # Check East and actual position
         if (passo+coluna) < 8:
-            if campo[linha][coluna+passo] == "x":
+            if (campo[linha][coluna+passo] == "x") and not([linha, coluna+passo] in positions):
                 bau_encontrado += 1
+                positions.append([linha, coluna+passo])
 
             elif campo[linha][coluna+passo] == "o":
                 break
 
-    for passo in range(1, alcance+1):
-        # Check Oeste
-        if (passo-coluna) >= 0:
-            if campo[linha][coluna - passo] == "x":
+    for passo in range(1, alcance):
+        # Check West
+        if (coluna-passo) >= 0:
+            if (campo[linha][coluna - passo] == "x") and not([linha,coluna - passo] in positions):
                 bau_encontrado += 1
+                positions.append([linha,coluna - passo])
 
             elif campo[linha][coluna - passo] == "o":
                 break
 
-    for passo in range(1, alcance+1):
-        # Check Norte
-        if (passo+linha) < 8:
-            if campo[linha+passo][coluna] == "x":
+    for passo in range(1, alcance):
+        # Check North
+        if (linha-passo) >= 0:
+            if (campo[linha-passo][coluna] == "x") and not([linha-passo, coluna] in positions):
                 bau_encontrado += 1
+                positions.append([linha-passo,coluna])
 
-            elif campo[linha+passo][coluna] == "o":
+            elif campo[linha-passo][coluna] == "o":
                 break
 
-    for passo in range(1, alcance+1):
-        # Check Sul
-        if (passo-coluna) >= 0:
-            if campo[linha][coluna - passo] == "x":
+    for passo in range(1, alcance):
+        # Check South
+        if (linha+passo) < 8:
+            if (campo[linha + passo][coluna] == "x") and not([linha + passo, coluna] in positions):
                 bau_encontrado += 1
+                positions.append([linha + passo, coluna])
 
-            elif campo[linha][coluna - passo] == "o":
+            elif campo[linha + passo][coluna] == "o":
                 break
 
 # Impressão da saída
