@@ -5,6 +5,14 @@
 # RA: 187848
 ###################################################
 
+def inverter_lista(lista):
+    inverted = [([0] * len(lista)) for i in range(len(lista[0]))]
+
+    for linha in range(len(lista)):
+        for coluna in range(len(lista[0])):
+            inverted[coluna][linha] = lista[linha][coluna]
+    return(inverted)
+
 def imprimir_imagem(imagem):
     print("P2")
     print(len(imagem[0]), len(imagem))
@@ -12,16 +20,16 @@ def imprimir_imagem(imagem):
     for i in range(len(imagem)):
         print(" ".join(str(x) for x in imagem[i]))
 
-def flip_horizontal(imagem_original): #(OK!)
+def flip_horizontal(imagem_original):
     for horizontal in range(n):
         imagem_original[horizontal] = imagem_original[horizontal][::-1]
     return(imagem_original)
 
-def flip_vertical(imagem_original): #(OK!)
+def flip_vertical(imagem_original):
     imagem_original = imagem_original[::-1]
     return(imagem_original)
 
-def shift_vertical(imagem_original, x, tamanho): #(OK!)
+def shift_vertical(imagem_original, x, tamanho):
     aux = [0]*tamanho
     for times in range(x):
         for a in range(tamanho):
@@ -29,7 +37,7 @@ def shift_vertical(imagem_original, x, tamanho): #(OK!)
         imagem_original = aux[:]
     return(imagem_original)
 
-def shift_horizontal(imagem_original, x): #(OK!)
+def shift_horizontal(imagem_original, x):
     aux = [0] * n
 
     for line in range(len(imagem_original)):
@@ -37,26 +45,37 @@ def shift_horizontal(imagem_original, x): #(OK!)
     imagem_original = aux[:]
     return(imagem_original)
 
-def crop(imagem_original, x1, y1, x2, y2): #(ok!)
+def crop(imagem_original, x1, y1, x2, y2):
     for linha_excluir in range(x1):
         del(imagem_original[0])
 
-    for linha_excluir in range(x2, len(imagem_original)):
+    for linha_excluir in range(x2-x1, len(imagem_original)):
         del (imagem_original[-1])
 
     for coluna_excluir in range(y1):
         for col in range(len(imagem_original)):
             del(imagem_original[col][0])
 
-    for coluna_excluir in range(y2, len(imagem_original[0])):
+    for coluna_excluir in range(y2-y1, len(imagem_original[0])):
         for col in range(len(imagem_original)):
             del (imagem_original[col][-1])
 
     return(imagem_original)
 
+def shrink(imagem_original, inverter = True):
+    aux = [([0]*(len(imagem_original[0])//2)) for i in range(len(imagem_original))]
 
-#def shrink(imagem_original):
+    for index, line in enumerate(imagem_original):
+        for sum in range(0, len(line)-1, 2):
+            aux[index][sum//2] = max(line[sum], line[sum+1])
 
+    imagem_original = aux[:]
+
+    if inverter:
+        return(shrink(inverter_lista(imagem_original), inverter = False))
+
+    else:
+        return(inverter_lista(imagem_original))
 
 # leitura da imagem
 _ = input()  # P2 - linha a ser ignorada
@@ -94,7 +113,7 @@ elif op == "crop":
     crop_begin = [int(i) for i in input().split(" ")]
     crop_final = [int(i) for i in input().split(" ")]
 
-    imagem = crop(imagem_original, crop_begin[0]-1, crop_begin[1]-1, crop_final[0]-1, crop_final[1]-1)
+    imagem = crop(imagem_original, crop_begin[0]-1, crop_begin[1]-1, crop_final[0], crop_final[1])
 
 else:   #shrink
     imagem = shrink(imagem_original)
