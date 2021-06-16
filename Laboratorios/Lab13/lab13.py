@@ -5,23 +5,30 @@
 # RA: 187848
 ###################################################
 
-atributos_value = {}
-indices = {}
+indices = []
 
 cartas = []
 contador_de_insercoes = 0
 
 def ordenar():
-    for p in indices:
-        peso = indices[p]
+    for coluna in indices:
         initialLine = 0
-        while(initialLine < len(cartas)):
-            for line in range(initialLine+1, len(cartas)):
-                if (cartas[line][peso] > cartas[initialLine][peso]):
-                    global contador_de_insercoes
-                    contador_de_insercoes += 1
+
+        while(initialLine < qtde_cartas):
+            changePosition = 0
+            for line in range(initialLine+1, qtde_cartas):
+                if cartas[line][coluna] == cartas[line-1][coluna]:
+                    cartas[line], cartas[line-1] = cartas[line-1], cartas[line]
+
+                elif (int(cartas[initialLine][coluna]) < int(cartas[line][coluna])):
+                    if changePosition == 0:
+                        #print(initialLine, line)
+                        global contador_de_insercoes
+                        contador_de_insercoes += 1
+                    changePosition += 1
                     cartas[line], cartas[initialLine] = cartas[initialLine], cartas[line]
             initialLine += 1
+
 # Leitura das cartas
 
 qtde_cartas = int(input())
@@ -29,13 +36,12 @@ campos = input().split(" ")
 
 for loop in range(qtde_cartas):
     cartas.append(input().split(" "))
-    atributos_value[cartas[-1][0]] = cartas[-1][1:]
 
 prioridades = input().split(" ")
+prioridades.reverse()
 
-for index, priority in enumerate(prioridades):
-    indices[priority] = len(prioridades) - index
-
+for priority in prioridades:
+    indices.append(campos.index(priority))
 
 # Ordenação das cartas
 ordenar()
