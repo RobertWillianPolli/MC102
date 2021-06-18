@@ -6,32 +6,28 @@
 ###################################################
 
 indices = []
-initialPosition = []
-
 cartas = []
+
 contador_de_insercoes = 0
 
 def ordenar():
     for coluna in indices:
+        matrizColuna = []
         initialLine = 0
 
+        matrizColuna += (int(x[coluna]) for x in cartas)
         while(initialLine < qtde_cartas):
-            for line in range(initialLine+1, qtde_cartas):
-                if (int(cartas[initialLine][coluna]) < int(cartas[line][coluna])):
-                    #print(initialLine, line)
-                    global contador_de_insercoes
-                    contador_de_insercoes += 1
-                    cartas[line], cartas[initialLine] = cartas[initialLine], cartas[line]
-            initialLine += 1
+            change = matrizColuna[initialLine:].index(max(matrizColuna[initialLine:]))
 
-    for coluna in [indices[-1]]:
-        initialLine = 0
-        while (initialLine < qtde_cartas):
-             for line in range(initialLine + 1, qtde_cartas):
-                if cartas[line][coluna] == cartas[line-1][coluna]:
-                    if initialPosition.index(cartas[line][0]) < initialPosition.index(cartas[line-1][0]):
-                        cartas[line], cartas[line-1] = cartas[line-1], cartas[line]
-             initialLine += 1
+            if change != 0:
+                global contador_de_insercoes
+                contador_de_insercoes += 1
+                cartas.insert(initialLine, cartas[initialLine+change])
+                del(cartas[initialLine+change+1])
+
+                matrizColuna.insert(initialLine, initialLine+change)
+                del(matrizColuna[initialLine+change+1])
+            initialLine += 1
 
 # Leitura das cartas
 
@@ -40,9 +36,6 @@ campos = input().split(" ")
 
 for loop in range(qtde_cartas):
     cartas.append(input().split(" "))
-
-for init in cartas:
-    initialPosition += [init[0]]
 
 prioridades = input().split(" ")
 prioridades.reverse()
@@ -55,8 +48,8 @@ ordenar()
 
 # Impressão dos dados
 
-print('{:15s}'.format(campos[0]), ''.join('{:>10}'.format(campo) for campo in campos[1:]))
+print(f'{campos[0]:15s}', ''.join(f'{campo:>10}' for campo in campos[1:]))
 
 for carta in cartas:
-    print('{:15s}'.format(carta[0]), ''.join('{:>10}'.format(atributo) for atributo in carta[1:]))
-print('Insercoes realizadas:', contador_de_insercoes)
+    print(f'{carta[0]:15s}', ''.join(f'{atributo:>10}' for atributo in carta[1:]))
+print(f'Insercoes realizadas: {contador_de_insercoes}')
