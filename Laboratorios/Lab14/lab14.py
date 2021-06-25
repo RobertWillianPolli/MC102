@@ -14,6 +14,7 @@ padroes = {"A":range(10),
            "S":[1],
            "T":[3, 6, 9]
            }
+
 """
 Esta função recebe como parâmetro uma matriz, uma posição inicial na
 matriz determinada pelos parâmetros linha e coluna e um padrão que
@@ -23,40 +24,30 @@ Caso o padrão seja encontrado a partir da posição inicial a função
 deve retornar o valor True. Caso contrário, a função de retornar o
 valor False.
 """
-def busca_padrao(linha_inicio, linha_fim, coluna_inicio, coluna_fim, passo_l = 1, passo_c = 1, diag = False):
-    status = []
-    p = 0
+def busca_padrao(linha, coluna, padrao):
+    p = []
+    for i in [-1, 0, 1]:
+        for j in [-1, 0, 1]:
+            if not((linha + i < 0) or (coluna + j < 0) or (linha + i > (m_linhas-1)) or (coluna + j > (m_colunas-1)) or (i == j == 0)):
+                if int(matriz[linha + i][coluna + j]) in padroes[padrao]:
+                    p.append([linha + i, coluna + j])
+    return(p)
 
-    range_line = range(linha_inicio, linha_fim, passo_l)
+def check(p):
+    global ordem
+    ordem += 1
 
-    for i in range_line:
-        if not(diag):
-            range_column = range(coluna_inicio, coluna_fim, passo_c)
-        else:
-            if passo_l < 0:
-                if passo_c > 0:
-                    range_column = [coluna_inicio + linha_inicio - i]
-                else:
-                    range_column = [coluna_inicio - linha_inicio + i]
+    for positions in p:
+        possibilidades = busca_padrao(positions[0], positions[1], pattern[ordem])
+
+        if ordem == (len(pattern) - 1):
+            if possibilidades != []:
+                return(True)
             else:
-                if passo_c > 0:
-                    range_column = [coluna_inicio - linha_inicio + i]
-                else:
-                    range_column = [coluna_inicio + linha_inicio - i]
+                return(False)
+        else:
+            return(check(possibilidades))
 
-        for j in range_column:
-            #if p > len(pattern):
-            #    break
-            if int(matriz[i][j]) in padroes[pattern[p]]:
-                status.append(1)
-                p += 1
-    print(status)
-    if len(status) == len(pattern):
-        print("jjj")
-        return([True, [linha_inicio+1, coluna_inicio+1]])
-
-    else:
-        return([False, [None, None]])
 # Leitura da matriz
 
 matriz = []
@@ -75,68 +66,27 @@ while(True):
 m_linhas = len(matriz)
 m_colunas = len(matriz[0])
 
-found         = [False, [None, None]]
-found_pattern = []
+possibilidades          = []
+posicoes_iniciais       = []
+possibilidades_iniciais = []
+
+global ordem
 
 for linha in range(m_linhas):
     for coluna in range(m_colunas):
+        ordem = 1
+        if int(matriz[linha][coluna]) in padroes[pattern[0]]:
+            possibilidades_iniciais = busca_padrao(linha, coluna, pattern[1])
+            if possibilidades_iniciais != []:
+                if check(possibilidades_iniciais):
+                    posicoes_iniciais.append([linha+1, coluna+1])
 
-        # Horizontal - Leste
-        if (coluna + len(pattern)) <= m_colunas:
-            found = busca_padrao(linha, linha+1, coluna, coluna + len(pattern))
-            if found[0] and not(found[1] in found_pattern):
-                found_pattern.append(found[1])
 
-        # Horizontal - Oeste
-        if coluna >= (len(pattern)-1):
-            found = busca_padrao(linha, linha+1, coluna, coluna - len(pattern), passo_c = -1)
-            if found[0] and not(found[1] in found_pattern):
-                found_pattern.append(found[1])
-
-        # Vertical - Norte
-        if linha >= (len(pattern)-1):
-            found = busca_padrao(linha, linha - len(pattern), coluna, coluna+1, passo_l = -1)
-            if found[0] and not(found[1] in found_pattern):
-                found_pattern.append(found[1])
-
-        # Vertical - Sul
-        if (linha + len(pattern)) <= m_linhas:
-            found = busca_padrao(linha, linha + len(pattern), coluna, coluna+1)
-            if found[0] and not(found[1] in found_pattern):
-                found_pattern.append(found[1])
-
-        # Diagonal - Nordeste
-        if (linha >= (len(pattern)-1)) and ((coluna + len(pattern)) <= m_colunas):
-            found = busca_padrao(linha, linha-len(pattern), coluna, coluna + len(pattern), passo_l = -1, passo_c = 1, diag = True)
-            if found[0] and not(found[1] in found_pattern):
-                found_pattern.append(found[1])
-
-        # Diagonal - Noroeste
-        if (linha >= (len(pattern)-1)) and (coluna >= (len(pattern)-1)):
-            found = busca_padrao(linha, linha-len(pattern), coluna, coluna - len(pattern), passo_l = -1, passo_c = -1, diag = True)
-            if found[0] and not(found[1] in found_pattern):
-                found_pattern.append(found[1])
-
-        # Diagonal - Sudeste
-        if ((linha + len(pattern)) <= m_linhas) and ((coluna + len(pattern)) <= m_colunas):
-            found = busca_padrao(linha, linha + len(pattern), coluna, coluna + len(pattern), passo_l = 1, passo_c = 1, diag = True)
-            if found[0] and not(found[1] in found_pattern):
-                found_pattern.append(found[1])
-
-        # Diagonal - Sudoeste
-        if ((linha + len(pattern)) <= m_linhas) and (coluna >= len(pattern)-1):
-            found = busca_padrao(linha, linha + len(pattern), coluna, coluna - len(pattern), passo_l = 1, passo_c = -1, diag = True)
-            if found[0] and not(found[1] in found_pattern):
-                found_pattern.append(found[1])
-print(found_pattern)
-''' 
+#print(posicoes_iniciais)
 
 # Impressão das posições iniciais (linha e coluna)
-if not(found_pattern[0]):
+if posicoes_iniciais == []:
   print("Nenhum padrao encontrado!")
 
 else:
-#  print(("Posicoes: " + " ".join([str((linha, coluna)) for linha, coluna in found_pattern[1]])).strip())
-    print(found_pattern[1])
-'''
-
+    print(("Posicoes: " + " ".join([str((linha, coluna)) for linha, coluna in posicoes_iniciais])).strip())
