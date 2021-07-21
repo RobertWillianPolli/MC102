@@ -20,7 +20,4 @@ t_saidaTrem = t_b_c - t_AB
 
 # Impressão da resposta
 
-if (t_saidaTrem < 0) or ((t_AB + t_BC + t_saidaTrem) > t_show):
-    print(False)
-else:
-    print(True)
+print(not((t_saidaTrem < 0) or ((t_AB + t_BC + t_saidaTrem) > t_show)))
