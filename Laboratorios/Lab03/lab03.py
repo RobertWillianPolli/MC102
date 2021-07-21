@@ -1,8 +1,10 @@
 ###################################################
 # MC102 - Algoritmos e Programação de Computadores
 # Laboratório 3 - Imposto de Renda
-# Nome: ROBERT WILLIAN POLLI
-# RA: 187848
+#
+#
+#''''' blué, bluééééé, blu blu ImPoStO è RoUbO blué blu bluè '''''
+#
 ###################################################
 
 limites = {0:[0,22847.76],

@@ -1,8 +1,6 @@
 ###################################################
 # MC102 - Algoritmos e Programação de Computadores
 # Laboratório 5 - Super Sete
-# Nome: ROBERT WILLIAN POLLI
-# RA: 187848
 ###################################################
 
 possibilidades = [] #Números possiveis para a aposta

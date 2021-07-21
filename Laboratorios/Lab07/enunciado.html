@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 07</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h1>
+<a id="user-content-a-viagem" class="anchor" href="#a-viagem" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>A Viagem</h1>
+<p>Por alguma razão você teve que passar o último ano sem poder viajar. 
+Agora finalmente é hora de planejar a próxima viagem, está quase tudo 
+pronto, falta apenas decidir o que você vai levar na sua mochila.</p>
+<p>Você separou vários itens que podem ser úteis na viagem, mas a sua 
+mochila tem um limite de peso. Para decidir quais itens levar, você 
+atribuiu um valor para cada item, dependendo do quão útil ele será na 
+viagem. Seu objetivo agora é escolher os itens de forma que a soma dos 
+valores seja elevada, mas que a soma dos pesos não ultrapasse a 
+capacidade da mochila.</p>
+<p>Pesquisando sobre esse problema você descobre que ele é uma versão do <a href="https://www.wikiwand.com/pt/Problema_da_mochila" rel="nofollow">Problema da Mochila</a>
+ e que existe uma regra razoavelmente simples que te dará um resultado 
+satisfatório. Essa regra consiste em escolher, entre os itens 
+disponíveis que cabem na mochila, aquele com a maior razão de valor 
+sobre o peso. Em caso de empate, o item com o menor peso deve ser 
+escolhido. Os itens devem ser escolhidos por essa regra até que não seja
+ possível colocar mais nenhum item na mochila.</p>
+<p>O exemplo a seguir mostra as escolhas entre um conjunto de cinco itens considerando uma mochila com capacidade de 3000g:</p>
+<table>
+<thead>
+<tr>
+<th align="center">Item</th>
+<th align="center">Valor</th>
+<th align="center">Peso (g)</th>
+<th align="center">Valor / Peso</th>
+<th align="center">Escolhido?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">jaqueta <a href="https://susy.ic.unicamp.br:9999/mc102multi/07/jaqueta.png" target="_blank" rel="noopener noreferrer"><img src="enunciado_files/jaqueta.png" alt="jaqueta" style="max-width:100%;"></a>
+</td>
+<td align="center">100</td>
+<td align="center">300</td>
+<td align="center">0.33</td>
+<td align="center"><a href="https://susy.ic.unicamp.br:9999/mc102multi/07/x.png" target="_blank" rel="noopener noreferrer"><img src="enunciado_files/x.png" alt="Não" style="max-width:100%;"></a></td>
+</tr>
+<tr>
+<td align="center">guarda-chuva <a href="https://susy.ic.unicamp.br:9999/mc102multi/07/guarda_chuva.png" target="_blank" rel="noopener noreferrer"><img src="enunciado_files/guarda_chuva.png" alt="guarda-chuva" style="max-width:100%;"></a>
+</td>
+<td align="center">400</td>
+<td align="center">400</td>
+<td align="center">1.00</td>
+<td align="center"><a href="https://susy.ic.unicamp.br:9999/mc102multi/07/ok.png" target="_blank" rel="noopener noreferrer"><img src="enunciado_files/ok.png" alt="Sim" style="max-width:100%;"></a></td>
+</tr>
+<tr>
+<td align="center">garrafa de água <a href="https://susy.ic.unicamp.br:9999/mc102multi/07/agua.png" target="_blank" rel="noopener noreferrer"><img src="enunciado_files/agua.png" alt="garrafa de água" style="max-width:100%;"></a>
+</td>
+<td align="center">300</td>
+<td align="center">600</td>
+<td align="center">0.50</td>
+<td align="center"><a href="https://susy.ic.unicamp.br:9999/mc102multi/07/ok.png" target="_blank" rel="noopener noreferrer"><img src="enunciado_files/ok.png" alt="Sim" style="max-width:100%;"></a></td>
+</tr>
+<tr>
+<td align="center">notebook <a href="https://susy.ic.unicamp.br:9999/mc102multi/07/notebook.png" target="_blank" rel="noopener noreferrer"><img src="enunciado_files/notebook.png" alt="notebook" style="max-width:100%;"></a>
+</td>
+<td align="center">700</td>
+<td align="center">1300</td>
+<td align="center">0.54</td>
+<td align="center"><a href="https://susy.ic.unicamp.br:9999/mc102multi/07/x.png" target="_blank" rel="noopener noreferrer"><img src="enunciado_files/x.png" alt="Não" style="max-width:100%;"></a></td>
+</tr>
+<tr>
+<td align="center">livro <a href="https://susy.ic.unicamp.br:9999/mc102multi/07/livro.jpg" target="_blank" rel="noopener noreferrer"><img src="enunciado_files/livro.jpg" alt="livro" style="max-width:100%;"></a>
+</td>
+<td align="center">2000</td>
+<td align="center">2000</td>
+<td align="center">1.00</td>
+<td align="center"><a href="https://susy.ic.unicamp.br:9999/mc102multi/07/ok.png" target="_blank" rel="noopener noreferrer"><img src="enunciado_files/ok.png" alt="Sim" style="max-width:100%;"></a></td>
+</tr>
+</tbody>
+</table>
+<p>Nesse exemplo os itens foram escolhidos na seguinte ordem: 
+guarda-chuva, livro e garrafa de água. O guarda-chuva foi escolhido 
+antes do livro, pois o peso dele é menor. Note que, o notebook não foi 
+escolhido após o livro, pois nesse momento ele não cabia na mochila. Da 
+mesma forma a jaqueta não pode ser inserida após a garrafa de água.</p>
+<p>O seu programa irá receber dois inteiros <strong>N</strong> e <strong>W</strong>, um em cada linha, representando o número de itens e a capacidade da mochila, respectivamente. Em seguida o programa receberá <strong>N</strong> linhas com números inteiros representando os pesos dos itens e <strong>N</strong> linhas com números inteiros representando os valores dos itens. <strong>Os itens estarão ordenados pelo peso</strong>.</p>
+<p>A saída deve informar dois números inteiros (um por linha): um com a 
+soma dos valores correspondentes aos objetos colocados na mochila e 
+outro com a soma dos pesos dos objetos colocados na mochila.</p>
+<p>Exemplos de entradas e saídas esperadas pelo seu programa:</p>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/07/dados/arq01.in">Entrada</a></p>
+<pre><code>5
+3000
+300
+400
+600
+1300
+2000
+100
+400
+300
+700
+2000
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/07/dados/arq01.out">Saída</a></p>
+<pre><code>2700
+3000
+</code></pre>
+<h3>
+<a id="user-content-teste-02" class="anchor" href="#teste-02" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 02</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/07/dados/arq02.in">Entrada</a></p>
+<pre><code>6
+7394
+760
+1039
+1244
+1618
+1619
+1886
+594
+124
+247
+1004
+1161
+1932
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/07/dados/arq02.out">Saída</a></p>
+<pre><code>4938
+7127
+</code></pre>
+<h3>
+<a id="user-content-teste-03" class="anchor" href="#teste-03" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 03</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/07/dados/arq03.in">Entrada</a></p>
+<pre><code>8
+416
+4
+16
+18
+32
+46
+64
+72
+138
+8
+32
+54
+160
+92
+320
+216
+276
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/07/dados/arq03.out">Saída</a></p>
+<pre><code>1158
+390
+</code></pre>
+<h2>
+<a id="user-content-código-base" class="anchor" href="#c%C3%B3digo-base" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Código Base</h2>
+<p>No arquivo auxiliar lab07.py você irá encontrar um código base para dar início ao processo de elaboração deste laboratório.</p>
+<h2>
+<a id="user-content-orientações" class="anchor" href="#orienta%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Orientações</h2>
+<ul>
+<li>Veja <a href="https://susy.ic.unicamp.br:9999/mc102multi/07">aqui</a> a página de submissão da tarefa.</li>
+<li>O arquivo a ser submetido deve se chamar lab07.py.</li>
+<li>No link "Arquivos auxiliares" há um arquivo compactado (aux07.zip) 
+que contém todos os arquivos de testes abertos (entradas e saídas 
+esperadas).</li>
+<li>O laboratório é composto de 10 testes abertos e 10 testes fechados.</li>
+<li>O limite máximo será de 20 submissões.</li>
+<li>Acesse o sistema SuSy com seu RA (apenas números) e a senha que você utiliza para fazer acesso ao sistema da DAC.</li>
+<li>Você deve seguir as instruções de submissão descritas no enunciado.</li>
+<li>Serão considerados apenas os resultados da última submissão.</li>
+<li>Esta tarefa tem peso 2.</li>
+<li>O prazo final para submissão é dia 23/05/2021 (domingo).</li>
+</ul>
+
+    </article>
+
+
+</body></html>

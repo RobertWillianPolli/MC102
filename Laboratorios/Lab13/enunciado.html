@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 13</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h1>
+<a id="user-content-super-trunfo" class="anchor" href="#super-trunfo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Super Trunfo</h1>
+<p>Super Trunfo é um jogo de cartas colecionáveis em que o objetivo 
+principal é obter as cartas de outros jogadores a partir da comparação 
+de atributos, como força, defesa e velocidade. Cada conjunto de cartas 
+possui um tema específico, como carros, animais e países.</p>
+<p>Você, um exímio jogador de Super Trunfo, gosta de organizar suas 
+cartas seguindo alguns critérios de ordem de atributos, já que constatou
+ que essa técnica aumenta a chance de vitórias. Em caso de empate nos 
+valores de atributos durante a ordenação, você gosta de manter as cartas
+ conforme as posições iniciais delas. Para isso, você resolveu criar um 
+programa que ordene as cartas seguindo a sequência de prioridades dos 
+atributos.</p>
+<p>O seu programa irá receber um valor <strong>N</strong>, indicando a 
+quantidade de cartas. Em seguida, seu programa irá receber os nomes dos 
+atributos das cartas separados por espaço, sendo que sempre o primeiro 
+atributo será o nome da carta. Na sequência, seu programa deverá ler <strong>N</strong>
+ linhas, contendo os valores dos atributos separados por espaço. Todos 
+os atributos das cartas, excluindo o nome, serão do tipo inteiro. Ao 
+final, o seu programa irá receber a ordem de prioridade dos atributos, 
+começando do atributo com maior prioridade até o de menor prioridade. 
+Considere que quanto maior o valor da carta em certo atributo, mais 
+importante ela é para a ordenação.</p>
+<p>Para a ordenação, você deverá usar o método de ordenação <a href="https://pt.wikipedia.org/wiki/Insertion_sort" rel="nofollow">Insertion Sort</a>, que é um <a href="https://pt.wikipedia.org/wiki/Ordena%C3%A7%C3%A3o_est%C3%A1vel" rel="nofollow">método de ordenação estável</a>,
+ já que preserva a ordem de itens de valores iguais. Além disso, o 
+Insertion Sort é o principal método que os jogadores usam para ordenar 
+as cartas, quando segurando elas na mão.</p>
+<p>O exemplo a seguir mostra cartas desordenadas em relação ao atributo Força:</p>
+<pre><code>Nome         Força
+Gato            20
+Formiga          5
+Cachorro        20
+Coelho          15
+Elefante        40
+</code></pre>
+<p>Algoritmos de ordenação estáveis mantém a ordem inicial dos dados em 
+caso de empate. Na ordenação a seguir, Gato aparece primeiro que 
+Cachorro após a ordenação, seguindo a propriedade de ordenação estável:</p>
+<pre><code>Nome         Força
+Elefante        40
+Gato            20
+Cachorro        20
+Coelho          15
+Formiga          5
+</code></pre>
+<p>Utilizando algoritmos não estáveis, essa propriedade não é garantida,
+ conforme a ordenção a seguir, onde Cachorro aparece antes de Gato:</p>
+<pre><code>Nome         Força
+Elefante        40
+Cachorro        20
+Gato            20
+Coelho          15
+Formiga          5
+</code></pre>
+<p>Como existe uma lista de prioridades para a ordenação, você deve 
+executar o Insertion Sort várias vezes, considerando cada um dos itens 
+da lista, começando pelo critério de menor prioridade até o critério de 
+maior prioridade.</p>
+<p>O exemplo a seguir mostra a ordenação para as cartas, considerando 
+que a prioridade seja Força, Defesa e Agilidade, nesta ordem. 
+Inicialmente, as cartas estão na seguinte ordem:</p>
+<pre><code>Nome         Forca        Defesa       Agilidade
+Gato            20            10              30
+Formiga         10            10              30
+Cachorro        20            10              30
+Coelho          20            10              30
+Elefante        30            30              10
+</code></pre>
+<p>Na primeira ordenação, feita para o item Agilidade, nenhuma inserção 
+foi realizada, já que os dados estavam ordenados por este item.</p>
+<p>Na sequência, a ordenação é realizada para o item Defesa. Nesta 
+ordenação, apenas uma inserção é feita (carta Elefante), conforme as 
+cartas ordenadas a seguir:</p>
+<pre><code>Nome         Forca        Defesa       Agilidade
+Elefante        30            30              10
+Gato            20            10              30
+Formiga         10            10              30
+Cachorro        20            10              30
+Coelho          20            10              30
+</code></pre>
+<p>Por último, a ordenação deve ser realizada para o item Força. Para 
+esta ordenação, duas inserções são feitas (cartas Cachorro e Coelho). A 
+ordenação final fica da seguinte forma:</p>
+<pre><code>Nome         Forca        Defesa       Agilidade
+Elefante        30            30              10
+Gato            20            10              30
+Cachorro        20            10              30
+Coelho          20            10              30
+Formiga         10            10              30
+</code></pre>
+<p>Ao total, foram feitas três inserções (nenhuma inserção para o item 
+Agilidade, uma inserção para o item Defesa e duas inserções para o item 
+Força).</p>
+<p>A saída do código deverá conter as cartas ordenadas seguindo os 
+critérios de prioridade e a quantidade de inserções feitas durante a 
+ordenação.</p>
+<p>Exemplos de entradas e saídas esperadas pelo seu programa:</p>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/13/dados/arq01.in">Entrada</a></p>
+<pre><code>5
+Nome Forca Defesa Agilidade
+Gato 20 10 30
+Formiga 10 10 30
+Cachorro 20 10 30
+Coelho 20 10 30
+Elefante 30 30 10
+Forca Defesa Agilidade
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/13/dados/arq01.out">Saída</a></p>
+<pre><code>Nome                 Forca    Defesa Agilidade
+Elefante                30        30        10
+Gato                    20        10        30
+Cachorro                20        10        30
+Coelho                  20        10        30
+Formiga                 10        10        30
+Insercoes realizadas: 3
+</code></pre>
+<h3>
+<a id="user-content-teste-04" class="anchor" href="#teste-04" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 04</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/13/dados/arq04.in">Entrada</a></p>
+<pre><code>10
+Nome Velocidade Potencia
+EnzoFerrari 250 250
+Fusca 150 150
+Taycan 250 350
+HB20 250 150
+Fusion 250 250
+Brasilia 150 150
+DeLorean 150 150
+ModelX 250 250
+Gol 150 150
+Argo 150 250
+Velocidade Potencia
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/13/dados/arq04.out">Saída</a></p>
+<pre><code>Nome            Velocidade  Potencia
+Taycan                 250       350
+EnzoFerrari            250       250
+Fusion                 250       250
+ModelX                 250       250
+HB20                   250       150
+Argo                   150       250
+Fusca                  150       150
+Brasilia               150       150
+DeLorean               150       150
+Gol                    150       150
+Insercoes realizadas: 5
+</code></pre>
+<h3>
+<a id="user-content-teste-06" class="anchor" href="#teste-06" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 06</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/13/dados/arq06.in">Entrada</a></p>
+<pre><code>10
+Nome Area Populacao Renda ExpecVida
+Argentina 2780 43 12777 77
+Bolivia 1098 10 8172 75
+Brasil 8510 211 14563 76
+Colombia 1138 48 14164 73
+Equador 256 16 11352 75
+Uruguai 176 3 20497 76
+Paraguai 406 7 13395 75
+Peru 1285 33 11148 75
+Chile 756 18 23165 77
+Venezuela 916 31 10968 75
+Area Populacao ExpecVida Renda
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/13/dados/arq06.out">Saída</a></p>
+<pre><code>Nome                  Area Populacao     Renda ExpecVida
+Brasil                8510       211     14563        76
+Argentina             2780        43     12777        77
+Peru                  1285        33     11148        75
+Colombia              1138        48     14164        73
+Bolivia               1098        10      8172        75
+Venezuela              916        31     10968        75
+Chile                  756        18     23165        77
+Paraguai               406         7     13395        75
+Equador                256        16     11352        75
+Uruguai                176         3     20497        76
+Insercoes realizadas: 26
+</code></pre>
+<h2>
+<a id="user-content-código-base" class="anchor" href="#c%C3%B3digo-base" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Código Base</h2>
+<p>No arquivo auxiliar lab13.py você irá encontrar um código base para 
+dar início ao processo de elaboração desta tarefa. Para facilitar a 
+implementação do seu programa, o código base contém a saída de dados, 
+conforme mostrado a seguir:</p>
+<pre><code>for atributo in cartas:
+  print('{:15s}'.format(atributo[0]), ''.join('{:&gt;10}'.format(item) for item in atributo[1:]))
+print('Insercoes realizadas:', contador_de_insercoes)
+</code></pre>
+<h2>
+<a id="user-content-orientações" class="anchor" href="#orienta%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Orientações</h2>
+<ul>
+<li>Veja <a href="https://susy.ic.unicamp.br:9999/mc102multi/13">aqui</a> a página de submissão da tarefa.</li>
+<li>O arquivo a ser submetido deve se chamar lab13.py.</li>
+<li>No link "Arquivos auxiliares" há um arquivo compactado (aux13.zip) 
+que contém todos os arquivos de testes abertos (entradas e saídas 
+esperadas).</li>
+<li>O laboratório é composto de 10 testes abertos e 10 testes fechados.</li>
+<li>O limite máximo será de 20 submissões.</li>
+<li>Acesse o sistema SuSy com seu RA (apenas números) e a senha que você utiliza para fazer acesso ao sistema da DAC.</li>
+<li>Você deve seguir as instruções de submissão descritas no enunciado.</li>
+<li>Serão considerados apenas os resultados da última submissão.</li>
+<li>Esta tarefa tem peso 3.</li>
+<li>O prazo final para submissão é dia 04/07/2021 (domingo).</li>
+</ul>
+
+    </article>
+
+
+</body></html>

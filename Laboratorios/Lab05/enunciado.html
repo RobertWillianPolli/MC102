@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 05</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h1>
+<a id="user-content-super-sete" class="anchor" href="#super-sete" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Super Sete</h1>
+<p>O Super Sete é uma modalidade de loteria da Caixa Econômica Federal. 
+Nesse jogo, existem sete colunas numeradas de 1 a 7 e, para apostar, o 
+jogador precisa escolher um número de 0 a 9 para cada uma dessas 
+colunas. O valor escolhido para uma coluna independe dos valores 
+escolhidos para as demais colunas, ou seja, podem haver números iguais 
+em colunas distintas. O jogador ganha se acertar uma determinada 
+quantidade de colunas.</p>
+<p>João é um grande apostador da loteria. Toda semana ele dirige-se até a
+ lotérica perto de sua casa com seus palpites e faz as apostas na 
+esperança de um dia tornar-se milionário. Como grande parte dos 
+apostadores, João tem supertições e segue algumas regras para definir os
+ números de suas apostas, sendo elas:</p>
+<ol>
+<li>Os números escolhidos para cada coluna devem seguir uma ordem não 
+decrescente. Ou seja, o número de uma coluna deve ser maior ou igual aos
+ números das colunas anteriores.</li>
+<li>A soma dos 7 números da aposta não pode ser um número múltiplo de 7 ou 13.</li>
+</ol>
+<p>João consegue dar bons palpites para a primeira, terceira, quarta e 
+sexta coluna, mas sempre fica na dúvida em relação às outras três 
+colunas. Sabendo das suas habilidades com programação, João pediu sua 
+ajuda.</p>
+<p>Você deve fazer um programa que gere todas as possíveis apostas 
+considerando que João irá fornecer para você os números da primeira, 
+terceira, quarta e sexta coluna. Os quatro números da entrada serão 
+fornecidos ordenados de forma não decrescente. Como saída, seu programa 
+deve gerar as possíveis apostas para João jogar no Super Sete, 
+considerando as regras do pré-estabelecidas. Além disso, as apostas 
+devem ser geradas em <a href="https://www.ime.usp.br/~pf/algoritmos/aulas/string-manip.html#lexicography" rel="nofollow">ordem lexicográfica</a>, conforme os exemplos abaixo.</p>
+<p>Exemplos de entradas e saídas esperadas pelo seu programa:</p>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/05/dados/arq01.in">Entrada</a></p>
+<pre><code>3
+4
+8
+9
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/05/dados/arq01.out">Saída</a></p>
+<pre><code>Primeira: 3
+Terceira: 4
+Quarta: 8
+Sexta: 9
+Lista de apostas:
+3 - 3 - 4 - 8 - 8 - 9 - 9
+3 - 3 - 4 - 8 - 9 - 9 - 9
+3 - 4 - 4 - 8 - 8 - 9 - 9
+3 - 4 - 4 - 8 - 9 - 9 - 9
+</code></pre>
+<h3>
+<a id="user-content-teste-02" class="anchor" href="#teste-02" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 02</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/05/dados/arq02.in">Entrada</a></p>
+<pre><code>3
+6
+7
+9
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/05/dados/arq02.out">Saída</a></p>
+<pre><code>Primeira: 3
+Terceira: 6
+Quarta: 7
+Sexta: 9
+Lista de apostas:
+3 - 3 - 6 - 7 - 7 - 9 - 9
+3 - 3 - 6 - 7 - 8 - 9 - 9
+3 - 3 - 6 - 7 - 9 - 9 - 9
+3 - 4 - 6 - 7 - 7 - 9 - 9
+3 - 4 - 6 - 7 - 8 - 9 - 9
+3 - 4 - 6 - 7 - 9 - 9 - 9
+3 - 5 - 6 - 7 - 7 - 9 - 9
+3 - 5 - 6 - 7 - 8 - 9 - 9
+3 - 5 - 6 - 7 - 9 - 9 - 9
+3 - 6 - 6 - 7 - 7 - 9 - 9
+3 - 6 - 6 - 7 - 8 - 9 - 9
+</code></pre>
+<h3>
+<a id="user-content-teste-03" class="anchor" href="#teste-03" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 03</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/05/dados/arq03.in">Entrada</a></p>
+<pre><code>0
+2
+3
+3
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/05/dados/arq03.out">Saída</a></p>
+<pre><code>Primeira: 0
+Terceira: 2
+Quarta: 3
+Sexta: 3
+Lista de apostas:
+0 - 0 - 2 - 3 - 3 - 3 - 4
+0 - 0 - 2 - 3 - 3 - 3 - 5
+0 - 0 - 2 - 3 - 3 - 3 - 6
+0 - 0 - 2 - 3 - 3 - 3 - 7
+0 - 0 - 2 - 3 - 3 - 3 - 8
+0 - 0 - 2 - 3 - 3 - 3 - 9
+0 - 1 - 2 - 3 - 3 - 3 - 3
+0 - 1 - 2 - 3 - 3 - 3 - 4
+0 - 1 - 2 - 3 - 3 - 3 - 5
+0 - 1 - 2 - 3 - 3 - 3 - 6
+0 - 1 - 2 - 3 - 3 - 3 - 7
+0 - 1 - 2 - 3 - 3 - 3 - 8
+0 - 2 - 2 - 3 - 3 - 3 - 3
+0 - 2 - 2 - 3 - 3 - 3 - 4
+0 - 2 - 2 - 3 - 3 - 3 - 5
+0 - 2 - 2 - 3 - 3 - 3 - 6
+0 - 2 - 2 - 3 - 3 - 3 - 7
+0 - 2 - 2 - 3 - 3 - 3 - 9
+</code></pre>
+<h2>
+<a id="user-content-código-base" class="anchor" href="#c%C3%B3digo-base" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Código Base</h2>
+<p>No arquivo auxiliar lab05.py você irá encontrar um código base para 
+dar início ao processo de elaboração dessa tarefa. Além disso, nele você
+ encontrará a formatação para exibir os sete números de uma aposta:</p>
+<pre><code>...
+print("Primeira:", n1)
+print("Terceira:", n3)
+print("Quarta:", n4)
+print("Sexta:", n6)
+...
+print("Lista de apostas:")
+print("{} - {} - {} - {} - {} - {} - {}".format(n1, n2, n3, n4, n5, n6, n7))
+</code></pre>
+<h2>
+<a id="user-content-orientações" class="anchor" href="#orienta%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Orientações</h2>
+<ul>
+<li>Veja <a href="https://susy.ic.unicamp.br:9999/mc102multi/05">aqui</a> a página de submissão da tarefa.</li>
+<li>O arquivo a ser submetido deve se chamar lab05.py.</li>
+<li>No link "Arquivos auxiliares" há um arquivo compactado (aux05.zip) 
+que contém todos os arquivos de testes abertos (entradas e saídas 
+esperadas).</li>
+<li>O laboratório é composto de 10 testes abertos e 10 testes fechados.</li>
+<li>O limite máximo será de 20 submissões.</li>
+<li>Acesse o sistema SuSy com seu RA (apenas números) e a senha que você utiliza para fazer acesso ao sistema da DAC.</li>
+<li>Você deve seguir as instruções de submissão descritas no enunciado.</li>
+<li>Serão considerados apenas os resultados da última submissão.</li>
+<li>Esta tarefa tem peso 1.</li>
+<li>O prazo final para submissão é dia 09/05/2021 (domingo).</li>
+</ul>
+
+    </article>
+
+
+</body></html>

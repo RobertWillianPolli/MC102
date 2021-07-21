@@ -1,8 +1,7 @@
 ###################################################
 # MC102 - Algoritmos e Programação de Computadores
 # Laboratório 12 - Processamento de Imagens
-# Nome: ROBERT WILLIAN POLLI    DATA: 07/06/2021
-# RA: 187848
+# DATA: 07/06/2021
 ###################################################
 
 def inverter_lista(lista):

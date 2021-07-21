@@ -1,8 +1,7 @@
 ###################################################
 # MC102 - Algoritmos e Programação de Computadores
 # Laboratório 11 - Jogo da Similaridade Máxima
-# Nome: ROBERT WILLIAN POLLI    Data: 31/04/2021
-# RA: 187848
+# Data: 31/04/2021
 ###################################################
 
 matriz_maior = []

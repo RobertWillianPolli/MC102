@@ -1,8 +1,8 @@
 ###################################################
 # MC102 - Algoritmos e Programação de Computadores
 # Laboratório 15 - De salto em salto
-# Nome: Robert Willian Polli    Data: 29/06/2021
-# RA: 187848
+# Data: 29/06/2021
+# Fora Bolsonaro!
 ###################################################
 
 '''

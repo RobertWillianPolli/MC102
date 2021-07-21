@@ -1,9 +1,7 @@
 ###################################################
 # MC102 - Algoritmos e Programação de Computadores
 # Laboratório 8 - O Desafio da Palavra Escondida
-# Nome: Robert Willian Polli
 # Data: 10/05/2021
-# RA: 187848
 ###################################################
 
 # DICA: use os métodos lower, replace, split e find

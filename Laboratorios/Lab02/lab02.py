@@ -1,8 +1,6 @@
 ###################################################
 # MC102 - Algoritmos e Programação de Computadores
 # Laboratório 2 - O Grande Show
-# Nome: Robert Willian Polli
-# RA: 187848
 ###################################################
 
 # Leitura de dados

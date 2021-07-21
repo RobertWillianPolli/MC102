@@ -1,8 +1,7 @@
 ###################################################
 # MC102 - Algoritmos e Programação de Computadores
 # Laboratório 7 - A Viagem
-# Nome: Robert Willian Polli - 03/05/21
-# RA: 187848
+# DATA: 03/05/21
 ###################################################
 
 weight = []

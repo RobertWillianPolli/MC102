@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 04</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h1>
+<a id="user-content-magic-the-gathering" class="anchor" href="#magic-the-gathering" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Magic: The Gathering</h1>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/04/Magic.jpg" target="_blank" rel="noopener noreferrer"><img src="enunciado_files/Magic.jpg" alt="Magic: The Gathering" style="max-width:100%;"></a></p>
+<p>Magic é um jogo de cartas colecionáveis (TCG, Trading Card Game), 
+criado por Richard Garfield em 1993, sendo um dos jogos de cartas mais 
+populares do mundo.</p>
+<p>No jogo, dois ou mais jogadores iniciam uma partida e o objetivo 
+consiste em derrotar o(s) oponente(s) utilizando as cartas do seu 
+grimório, também conhecido como deck. O conjunto de regras pode variar 
+dependendo da modalidade que está sendo jogada. Em uma das modalidades, 
+cada jogador começa a partida com no mínimo 60 cartas no seu deck e 20 
+pontos de vida.</p>
+<p>As cartas no Magic podem possuir cinco cores distintas (Branco, Azul,
+ Preto, Vermelho e Verde). Existem ainda cartas incolores e 
+multicoloridas (com mais de uma identidade de cor). A combinação de 
+cartas com diferentes cores pode ser utilizada para construir um deck 
+com estratégias distintas de combate.</p>
+<p>João é um jogador de Magic e está montando um novo deck para 
+participar de um campeonato. Ele pretende utilizar uma estratégia 
+específica para derrotar seus oponentes com seu novo deck. Para isso, 
+ele precisa de uma certa quantidade de cartas com a cor verde ou com a 
+cor preta.</p>
+<p>João utiliza a seguinte classificação para coloração das cartas:</p>
+<ul>
+<li>1: Branco</li>
+<li>2: Azul</li>
+<li>3: Preto</li>
+<li>4: Vermelho</li>
+<li>5: Verde</li>
+<li>6: Incolor ou multicolorida</li>
+</ul>
+<p>João está com um orçamento limitado e pode gastar no máximo <strong>X</strong> reais comprando novas cartas, sendo que é possível comprar um booster (pacote) com uma única carta aleatória por <strong>B</strong> reais. Entretanto, para construir seu novo deck João gostaria de ter mais <strong>D</strong> novas cartas na cor verde ou com a cor preta.</p>
+<p>Sabendo que você possui habilidades com programação, João pede sua 
+ajuda para agilizar o processo de contabilização das novas cartas que 
+ele pretende comprar. Para isso, você deve fazer uma programa que recebe
+ como entrada o orçamento <strong>X</strong> (valor real) que João possui para comprar novas cartas, o preço <strong>B</strong> (valor real) de um booster e a quantidade <strong>D</strong>
+ (valor inteiro) de novas cartas da cor verde ou da cor preta que João 
+deseja obter. Em seguida, seu programa deve ler os identificadores das 
+cores das cartas, enquanto for possível comprar um novo booster (ou 
+seja, enquanto ainda houver dinheiro disponível) e a quantidade <strong>D</strong> de novas cartas da cor verde ou da cor preta não for alcançada.</p>
+<p>Note que João quer apenas <strong>D</strong> novas cartas da cor 
+verde ou da cor preta, ou seja, uma vez que essa quantidade for 
+alcançada, seu programa deve indicar que João já possui a quantidade de 
+cartas desejada, mesmo que ainda haja dinheiro disponível para comprar 
+novos boosters.</p>
+<p>Como saída, seu programa deve informar o valor do orçamento, o valor 
+do booster, o total gasto, o total restante, a quantidade de boosters 
+comprados, a quantidade deseja de cartas da cor verde ou da cor preta, e
+ a quantidade obtida de cartas da cor verde ou da cor preta. A mensagem 
+de saída deve seguir o seguinte padrão:</p>
+<pre><code>ORCAMENTO: XX.XX REAIS
+VALOR DO BOOSTER: XX.XX REAIS
+TOTAL GASTO: XX.XX REAIS
+TOTAL RESTANTE: XX.XX REAIS
+QUANTIDADE DE BOOSTERS COMPRADOS: X
+QUANTIDADE DESEJADA DE CARTAS DA COR VERDE OU DA COR PRETA: X
+QUANTIDADE OBTIDA DE CARTAS DA COR VERDE OU DA COR PRETA: X
+</code></pre>
+<p>Além disso, caso João consiga as <strong>D</strong> novas cartas da cor verde ou da cor preta, a seguinte mensagem deve ser exibida:</p>
+<pre><code>JOAO CONSEGUIU MONTAR SEU NOVO DECK!
+</code></pre>
+<p>Caso contrário:</p>
+<pre><code>JOAO NAO CONSEGUIU MONTAR SEU NOVO DECK!
+</code></pre>
+<p>Exemplos de entradas e saídas esperadas pelo seu programa:</p>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/04/dados/arq01.in">Entrada</a></p>
+<pre><code>189.02
+18.21
+9
+4
+5
+2
+3
+4
+1
+1
+2
+1
+4
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/04/dados/arq01.out">Saída</a></p>
+<pre><code>ORCAMENTO: 189.02 REAIS
+VALOR DO BOOSTER: 18.21 REAIS
+TOTAL GASTO: 182.10 REAIS
+TOTAL RESTANTE: 6.92 REAIS
+QUANTIDADE DE BOOSTERS COMPRADOS: 10
+QUANTIDADE DESEJADA DE CARTAS DA COR VERDE OU DA COR PRETA: 9
+QUANTIDADE OBTIDA DE CARTAS DA COR VERDE OU DA COR PRETA: 2
+JOAO NAO CONSEGUIU MONTAR SEU NOVO DECK!
+</code></pre>
+<h3>
+<a id="user-content-teste-02" class="anchor" href="#teste-02" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 02</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/04/dados/arq02.in">Entrada</a></p>
+<pre><code>207.64
+17.07
+5
+4
+4
+3
+2
+6
+5
+2
+2
+3
+3
+5
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/04/dados/arq02.out">Saída</a></p>
+<pre><code>ORCAMENTO: 207.64 REAIS
+VALOR DO BOOSTER: 17.07 REAIS
+TOTAL GASTO: 187.77 REAIS
+TOTAL RESTANTE: 19.87 REAIS
+QUANTIDADE DE BOOSTERS COMPRADOS: 11
+QUANTIDADE DESEJADA DE CARTAS DA COR VERDE OU DA COR PRETA: 5
+QUANTIDADE OBTIDA DE CARTAS DA COR VERDE OU DA COR PRETA: 5
+JOAO CONSEGUIU MONTAR SEU NOVO DECK!
+</code></pre>
+<h3>
+<a id="user-content-teste-03" class="anchor" href="#teste-03" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 03</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/04/dados/arq03.in">Entrada</a></p>
+<pre><code>400.97
+18.44
+10
+5
+4
+3
+5
+5
+1
+4
+4
+2
+1
+5
+2
+2
+3
+1
+5
+1
+5
+4
+2
+2
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/04/dados/arq03.out">Saída</a></p>
+<pre><code>ORCAMENTO: 400.97 REAIS
+VALOR DO BOOSTER: 18.44 REAIS
+TOTAL GASTO: 387.24 REAIS
+TOTAL RESTANTE: 13.73 REAIS
+QUANTIDADE DE BOOSTERS COMPRADOS: 21
+QUANTIDADE DESEJADA DE CARTAS DA COR VERDE OU DA COR PRETA: 10
+QUANTIDADE OBTIDA DE CARTAS DA COR VERDE OU DA COR PRETA: 8
+JOAO NAO CONSEGUIU MONTAR SEU NOVO DECK!
+</code></pre>
+<h2>
+<a id="user-content-código-base" class="anchor" href="#c%C3%B3digo-base" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Código Base</h2>
+<p>No arquivo auxiliar lab04.py você irá encontrar um código base para dar início ao processo de submissão desse laboratório.</p>
+<h2>
+<a id="user-content-orientações" class="anchor" href="#orienta%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Orientações</h2>
+<ul>
+<li>Veja <a href="https://susy.ic.unicamp.br:9999/mc102multi/04">aqui</a> a página de submissão da tarefa.</li>
+<li>O arquivo a ser submetido deve se chamar lab04.py.</li>
+<li>No link "Arquivos auxiliares" há um arquivo compactado (aux04.zip) 
+que contém todos os arquivos de testes abertos (entradas e saídas 
+esperadas).</li>
+<li>O laboratório é composto de 10 testes abertos e 10 testes fechados.</li>
+<li>O limite máximo será de 20 submissões.</li>
+<li>Acesse o sistema SuSy com seu RA (apenas números) e a senha que você utiliza para fazer acesso ao sistema da DAC.</li>
+<li>Você deve seguir as instruções de submissão descritas no enunciado.</li>
+<li>Serão considerados apenas os resultados da última submissão.</li>
+<li>Esta tarefa tem peso 1.</li>
+<li>O prazo final para submissão é dia 02/05/2021 (domingo).</li>
+</ul>
+
+    </article>
+
+
+</body></html>

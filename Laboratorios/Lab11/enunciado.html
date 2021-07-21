@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 11</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h1>
+<a id="user-content-jogo-da-similaridade-máxima" class="anchor" href="#jogo-da-similaridade-m%C3%A1xima" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Jogo da Similaridade Máxima</h1>
+<p>Nesse período de isolamento, você e seus colegas de república estão 
+entediados e já enjoaram de todos os jogos de tabuleiro que possuem. 
+Além disso, a grana tá curta. Então você decide criar um novo jogo 
+usando apenas folhas de papel e uma caneta. Você começa cortando vários 
+quadrados de tamanhos diferentes e em cada um deles, você pinta um 
+quadriculado diferente com casas brancas e pretas.</p>
+<p>Em cada rodada serão escolhidos dois quadrados e cada jogador deverá 
+posicionar o quadrado menor em cima do quadrado maior de modo a causar a
+ menor mudança possível no desenho do quadrado maior. Isto é, o quadrado
+ menor deverá ser posicionado sobre a parte do quadrado maior que é mais
+ parecida com ele. Para simplificar o jogo, você definiu uma orientação 
+para todos os quadrados, de modo que eles não podem ser rotacionados na 
+hora de colocar o quadrado menor em cima quadrado maior.</p>
+<p>A pontuação de cada jogada é medida pelo grau de similaridade entre o
+ quadrado menor e a parte coberta do quadrado maior. Vence a rodada o 
+jogador com maior pontuação. Para medir o grau de similaridade, basta 
+contar quantas casas são iguais no quadrado menor e nas casas 
+correspondentes cobertas do quadrado maior, e em seguida dividir pelo 
+tamanho do quadrado menor. Se um jogador consegue achar o maior grau de 
+similaridade possível para aqueles dois quadrados ele recebe o dobro de 
+pontos pela vitória.</p>
+<p>Na imagem abaixo, temos um exemplo de uma rodada desse jogo com o 
+quadrado maior e o menor, nas figuras (a) e (b), e as escolhas de 
+posições de dois jogadores, nas figuras (c) e (d). A posição do quadrado
+ menor, em cima do quadrado maior, é indicada por uma borda vermelha. As
+ casas pintadas na cor cinza indicam diferenças nas cores das casas 
+alinhadas do quadrado maior e do quadrado menor.</p>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/11/exemplo-linha.jpg" target="_blank" rel="noopener noreferrer"><img src="enunciado_files/exemplo-linha.jpg" alt="Jogo da Similaridade Máxima" style="max-width:100%;"></a></p>
+<p>Ao posicionar o quadrado menor em <code>(3,3)</code>, o Jogador 1 (Figura (c)) alcança um grau de similaridade de <code>11 / 16 = 0.6875 = 68.75%</code>. Já o Jogador 2 (Figura (d)), posicionou o quadrado menor em <code>(0,1)</code>, alcançando um grau de similaridade de <code>15 / 16 = 0.9375 = 93.75%</code> (maior grau de similaridade possível). Sendo assim, o Jogador 2 além de vencer a rodada, ganhou o dobro de pontos pela vitória.</p>
+<p>Para garantir que a pontuação extra será atribuída corretamente, você
+ decidiu criar um programa que lê uma representação binária dos 
+quadrados e retorna a posição onde o quadrado menor deve ser colocado no
+ quadrado maior de modo a maximizar o grau de similaridade. Uma posição <code>(x,y)</code> é composta por dois valores inteiros entre entre <code>0</code> e <code>n-1</code>, onde <code>n</code> é a dimensão do quadrado maior. Além disso, retornar a posição <code>(x,y)</code> significa que a casa superior esquerda do quadrado menor cobre a casa <code>(x,y)</code>.
+ Em seguida o seu programa deve imprimir o valor máximo de similaridade.
+  Note que pode existir mais de uma posição com grau de similaridade 
+máxima. Nesses casos, seu programa deve retornar a posição mais superior
+ e mais à esquerda possível.</p>
+<p>A primeira linha da entrada contém um inteiro <code>n</code> que indica a dimensão do quadrado maior, seguida de <code>n</code> linhas descrevendo o quadrado maior. Cada linha contém <code>n</code> casas separada por espaços. Uma casa de cor preta é representada pelo número <code>1</code> e uma casa de cor branca é representada pelo número <code>0</code>.
+ Nas linhas seguintes da entrada, são dadas as especificações do 
+quadrado menor no mesmo formato: uma linha contendo o valor inteiro <code>m</code> com a dimensão do quadrado menor, seguida de <code>m</code> linhas descrevendo o quadrado menor. Note que <code>m</code> ≤ <code>n</code>.</p>
+
+<pre><code>&lt;n&gt;
+&lt;linha 1 do quadrado maior&gt;
+&lt;linha 2 do quadrado maior&gt;
+...
+&lt;linha n do quadrado maior&gt;
+&lt;m&gt;
+&lt;linha 1 do quadrado menor&gt;
+&lt;linha 2 do quadrado menor&gt;
+...
+&lt;linha n do quadrado menor&gt;
+</code></pre>
+<p>A saída do seu programa deverá ter o seguinte formato:</p>
+<pre><code>Posição: (&lt;linha&gt;,&lt;coluna&gt;)
+Similaridade máxima: &lt;porcentagem&gt;%
+</code></pre>
+<p>Exemplos de entradas e saídas esperadas pelo seu programa:</p>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/11/dados/arq01.in">Entrada</a></p>
+<pre><code>7
+1 0 1 1 0 0 1
+1 0 0 1 0 0 1
+0 0 0 1 1 0 1
+0 1 0 0 0 0 1
+1 0 1 1 0 1 0
+1 0 1 0 0 1 1
+1 0 0 0 1 0 0
+4
+0 1 1 0
+1 0 1 0
+0 0 1 1
+1 0 0 0
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/11/dados/arq01.out">Saída</a></p>
+<pre><code>Posição: (0,1)
+Similaridade máxima: 93.75%
+</code></pre>
+<h3>
+<a id="user-content-teste-02" class="anchor" href="#teste-02" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 02</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/11/dados/arq02.in">Entrada</a></p>
+<pre><code>12
+0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 1 1 1 0
+0 0 0 0 0 0 0 0 0 1 0 0
+0 0 0 0 0 0 0 0 0 1 1 0
+0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0
+3
+1 1 1
+0 1 0
+0 1 1
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/11/dados/arq02.out">Saída</a></p>
+<pre><code>Posição: (7,8)
+Similaridade máxima: 100.00%
+</code></pre>
+<h3>
+<a id="user-content-teste-07" class="anchor" href="#teste-07" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 07</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/11/dados/arq07.in">Entrada</a></p>
+<pre><code>15
+0 0 1 0 0 0 0 0 1 0 1 0 1 0 0
+1 0 1 1 0 0 0 0 1 0 1 0 1 0 1
+1 1 0 1 1 1 0 1 1 0 1 0 1 0 1
+0 1 1 0 1 0 0 0 0 0 0 0 0 0 0
+1 1 0 1 1 1 1 0 0 1 0 1 0 1 0
+0 1 1 0 0 0 0 1 1 0 0 1 0 0 0
+0 1 0 0 0 0 1 1 1 0 1 0 0 0 0
+0 1 0 1 1 1 0 1 1 0 0 1 0 1 1
+0 0 0 1 1 1 1 1 0 0 0 1 0 1 1
+0 0 1 1 0 0 1 0 1 1 0 1 0 0 1
+0 1 0 1 1 0 0 0 0 1 1 0 0 1 1
+1 0 0 1 1 0 0 0 1 0 1 0 1 0 1
+0 0 0 1 0 1 0 1 0 1 1 1 1 1 1
+1 1 1 0 0 0 0 0 1 1 0 1 1 0 1
+0 0 0 0 0 1 1 1 0 1 0 1 0 1 0
+3
+0 0 1
+0 1 0
+1 1 1
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/11/dados/arq07.out">Saída</a></p>
+<pre><code>Posição: (10,11)
+Similaridade máxima: 100.00%
+</code></pre>
+<h2>
+<a id="user-content-código-base" class="anchor" href="#c%C3%B3digo-base" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Código Base</h2>
+<p>No arquivo auxiliar lab11.py você irá encontrar um código base para 
+dar início ao processo de elaboração desta tarefa. Para facilitar a 
+implementação do seu programa, no código base existe o cabeçalho da 
+função que deve calcular o grau de similaridade entre uma região da 
+matriz maior que começa em uma dada posição <code>(linha,coluna)</code> e a matriz menor. O cabeçalho da função é apresentado a seguir:</p>
+<pre><code>def calcula_similaridade(linha, coluna, maior, menor):
+  ...
+</code></pre>
+<p>Além da função descrita acima, o código base contém a impressão da saída do programa:</p>
+<pre><code>print("Posição: ({0},{1})".format(pos[0], pos[1]))
+print("Similaridade máxima: {:.2f}%".format(similaridade_maxima)
+</code></pre>
+<h2>
+<a id="user-content-orientações" class="anchor" href="#orienta%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Orientações</h2>
+<ul>
+<li>Veja <a href="https://susy.ic.unicamp.br:9999/mc102multi/11">aqui</a> a página de submissão da tarefa.</li>
+<li>O arquivo a ser submetido deve se chamar lab11.py.</li>
+<li>No link "Arquivos auxiliares" há um arquivo compactado (aux11.zip) 
+que contém todos os arquivos de testes abertos (entradas e saídas 
+esperadas).</li>
+<li>O laboratório é composto de 10 testes abertos e 10 testes fechados.</li>
+<li>O limite máximo será de 20 submissões.</li>
+<li>Acesse o sistema SuSy com seu RA (apenas números) e a senha que você utiliza para fazer acesso ao sistema da DAC.</li>
+<li>Você deve seguir as instruções de submissão descritas no enunciado.</li>
+<li>Serão considerados apenas os resultados da última submissão.</li>
+<li>Esta tarefa tem peso 3.</li>
+<li>O prazo final para submissão é dia 20/06/2021 (domingo).</li>
+</ul>
+
+    </article>
+
+
+</body></html>

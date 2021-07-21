@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 01</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h1>
+<a id="user-content-aritmética-com-inteiros" class="anchor" href="#aritm%C3%A9tica-com-inteiros" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Aritmética com Inteiros</h1>
+<p>O objetivo deste laboratório é exercitar o processo de submissão de um código em Python no sistema <a href="https://susy.ic.unicamp.br:9999/mc102" rel="nofollow">SuSy</a>. Seu programa irá receber três números inteiros e irá armazená-los nas variáveis <em>a</em>, <em>b</em> e <em>c</em>. Como saída, seu programa deve exibir inicialmente os valores das variáveis <em>a</em>, <em>b</em> e <em>c</em>. Em seguida, seu programa deve efetuar uma sequência de operações aritméticas utilizando as variáveis <em>a</em>, <em>b</em> e <em>c</em> e exibir o resultado na seguinte ordem:</p>
+<ul>
+<li>Soma <code>a + b + c</code>
+</li>
+<li>Subtração <code>a - b - c</code>
+</li>
+<li>Multiplicação <code>a * b * c</code>
+</li>
+<li>Exponenciação <code>a ** c</code>
+</li>
+<li>Divisão Inteira <code>b // c</code>
+</li>
+<li>Resto da Divisão <code>b % c</code>
+</li>
+</ul>
+<p>Exemplos de entradas e saídas esperadas pelo seu programa:</p>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/01/dados/arq01.in">Entrada</a></p>
+<pre><code>1
+12
+2
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/01/dados/arq01.out">Saída</a></p>
+<pre><code>a = 1
+b = 12
+c = 2
+a + b + c = 15
+a - b - c = -13
+a * b * c = 24
+a ** c = 1
+b // c = 6
+b % c = 0
+</code></pre>
+<h3>
+<a id="user-content-teste-02" class="anchor" href="#teste-02" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 02</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/01/dados/arq02.in">Entrada</a></p>
+<pre><code>2
+8
+3
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/01/dados/arq02.out">Saída</a></p>
+<pre><code>a = 2
+b = 8
+c = 3
+a + b + c = 13
+a - b - c = -9
+a * b * c = 48
+a ** c = 8
+b // c = 2
+b % c = 2
+</code></pre>
+<h3>
+<a id="user-content-teste-03" class="anchor" href="#teste-03" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 03</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/01/dados/arq03.in">Entrada</a></p>
+<pre><code>7
+3
+4
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/01/dados/arq03.out">Saída</a></p>
+<pre><code>a = 7
+b = 3
+c = 4
+a + b + c = 14
+a - b - c = 0
+a * b * c = 84
+a ** c = 2401
+b // c = 0
+b % c = 3
+</code></pre>
+
+<h2>
+<a id="user-content-código-base" class="anchor" href="#c%C3%B3digo-base" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Código Base</h2>
+<p>No arquivo auxiliar lab01.py você irá encontrar um código base para 
+dar início ao processo de submissão deste laboratório. Você deve 
+realizar a primeira submissão no <a href="https://susy.ic.unicamp.br:9999/mc102" rel="nofollow">SuSy</a>
+ utilizando esse código base e irá perceber que em todos os casos de 
+testes as soluções serão consideradas incorretas. No arquivo auxiliar 
+lab01.py existem <em>três</em> erros que devem ser corrigidos para que a
+ submissão seja considerada correta em todos os casos de teste. A seguir
+ iremos mostrar como corrigir esses erros presentes no código base. Para
+ cada um dos erros você deve realizar uma nova submissão no <a href="https://susy.ic.unicamp.br:9999/mc102" rel="nofollow">SuSy</a> para verificar se o erro foi corrigido ou não.</p>
+<h2>
+<a id="user-content-corrigindo-o-código-base" class="anchor" href="#corrigindo-o-c%C3%B3digo-base" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Corrigindo o Código Base</h2>
+<h3>
+<a id="user-content-1-espaçamento-extra" class="anchor" href="#1-espa%C3%A7amento-extra" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Espaçamento Extra</h3>
+<p>Na linha 13 do código base você irá encontrar o seguinte comando:</p>
+<pre><code>print("b  =", b)
+</code></pre>
+<p>Perceba que antes da igualdade existem dois espaços, mas no exemplo 
+de saída esperada pelo seu programa existe apenas um. Para cada um dos 
+testes o <a href="https://susy.ic.unicamp.br:9999/mc102" rel="nofollow">SuSy</a> compara se a saída do seu programa é <em>exatamente</em>
+ igual a saída esperada do teste, isso significa que espaços extras 
+podem fazer com que seu programa forneça soluções incorretas mesmo que 
+visualmente elas pareçam idênticas. Para solucionar esse problema 
+modifique a linha 13 para o seguinte comando:</p>
+<pre><code>print("b =", b)
+</code></pre>
+<p>Realize a submissão novamente no <a href="https://susy.ic.unicamp.br:9999/mc102" rel="nofollow">SuSy</a> e verifique se o problema de espaço extra foi corrigido.</p>
+<h3>
+<a id="user-content-2-ordem-dos-operandos" class="anchor" href="#2-ordem-dos-operandos" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Ordem dos Operandos</h3>
+<p>Na linha 16 do código base você irá encontrar o seguinte comando:</p>
+<pre><code>print("a - b - c =", c - a - b)
+</code></pre>
+<p>Note que nesse comando é esperado que o resultado da operação a - b -
+ c seja exibido, mas o comando está exibindo o resultado da operação c -
+ a - b e isso torna as saídas fornecidas pelo seu programa incorretas. 
+Para solucionar esse problema modifique a linha 16 para o seguinte 
+comando:</p>
+<pre><code>print("a - b - c =", a - b - c)
+</code></pre>
+<p>Realize a submissão novamente no <a href="https://susy.ic.unicamp.br:9999/mc102" rel="nofollow">SuSy</a> e verifique se o problema foi corrigido.</p>
+<h3>
+<a id="user-content-3-ordem-das-impressões" class="anchor" href="#3-ordem-das-impress%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Ordem das Impressões</h3>
+<p>Nas linhas 19 e 20 do código base você irá encontrar os seguintes comandos:</p>
+<pre><code>print("b % c =", b % c)
+print("b // c =", b // c)
+</code></pre>
+<p>Note que programa será executado linha por linha, isso significa que o
+ código base está exibindo primeiro o resultado da operação b % c (resto
+ da divisão inteira) antes do resultado da operação b // c (divisão 
+inteira). Como mencionado anteriormente, o <a href="https://susy.ic.unicamp.br:9999/mc102" rel="nofollow">SuSy</a> compara se a saída do seu programa é <em>exatamente</em>
+ igual a saída esperada para cada um dos testes e como a exibição dos 
+resultados das operações aritméticas está invertida, os testes serão 
+considerados como incorretos. Para solucionar esse problema, inverta a 
+ordem das linhas 19 e 20, desta forma:</p>
+<pre><code>print("b // c =", b // c)
+print("b % c =", b % c)
+</code></pre>
+<p>Realize a submissão novamente no <a href="https://susy.ic.unicamp.br:9999/mc102/01" rel="nofollow">SuSy</a> e verifique se para todos os testes as soluções constam como corretas.</p>
+<h2>
+<a id="user-content-orientações" class="anchor" href="#orienta%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Orientações</h2>
+<ul>
+<li>Veja <a href="https://susy.ic.unicamp.br:9999/mc102multi/01">aqui</a> a página de submissão da tarefa.</li>
+<li>O arquivo a ser submetido deve se chamar lab01.py.</li>
+<li>No link "Arquivos auxiliares" há um arquivo compactado (aux01.zip) 
+que contém todos os arquivos de testes abertos (entradas e saídas 
+esperadas).</li>
+<li>O laboratório é composto de 10 testes abertos e 10 testes fechados.</li>
+<li>O limite máximo será de 20 submissões.</li>
+<li>Acesse o sistema SuSy com seu RA (apenas números) e a senha que você utiliza para fazer acesso ao sistema da DAC.</li>
+<li>Você deve seguir as instruções de submissão descritas no enunciado.</li>
+<li>Serão considerados apenas os resultados da última submissão.</li>
+<li>Esta tarefa tem peso 1.</li>
+<li>O prazo final para submissão é dia 11/04/2021 (domingo).</li>
+</ul>
+
+    </article>
+
+
+</body></html>

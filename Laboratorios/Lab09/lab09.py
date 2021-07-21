@@ -1,8 +1,6 @@
 #####################################################
 # MC102 - Algoritmos e Programação de Computadores
 # Laboratório 9 - Magic: Trocando Cartas
-# Nome: ROBERT WILLIAN POLLI
-# RA: 187848
 #####################################################
 
 cartas_para_troca = {}

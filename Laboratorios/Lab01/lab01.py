@@ -1,8 +1,6 @@
 ###################################################
 # MC102 - Algoritmos e Programação de Computadores
 # Laboratório 1 - Aritmética com Inteiros
-# Nome: ROBERT WILLIAN POLLI
-# RA: 187848
 ###################################################
 
 a = int(input())

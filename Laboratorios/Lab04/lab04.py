@@ -1,8 +1,6 @@
 ###################################################
 # MC102 - Algoritmos e Programação de Computadores
 # Laboratório 4 - Magic: The Gathering
-# Nome: Robert Willian Polli
-# RA: 187848
 ###################################################
 
 #Variaveis

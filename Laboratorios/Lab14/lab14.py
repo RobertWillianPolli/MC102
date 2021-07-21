@@ -1,8 +1,7 @@
 ###################################################
 # MC102 - Algoritmos e Programação de Computadores
 # Laboratório 14 - Caça-Números
-# Nome: Robert Willian Polli    Data: 21/06/2021
-# RA: 187848
+# Data: 21/06/2021
 ###################################################
 
 padroes = {"A":range(10),

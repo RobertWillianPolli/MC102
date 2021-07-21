@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 06</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h1>
+<a id="user-content-plataforma" class="anchor" href="#plataforma" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Plataforma</h1>
+<p>Jogos de plataforma são um gênero de jogo em que o objetivo principal
+ é mover o personagem em uma plataforma. Normalmente, o personagem se 
+move pulando entre uma posição <code>x</code> da plataforma para outra posição <code>y</code> da plataforma.</p>
+<p>Neste laboratório, você deverá implementar uma versão desse gênero de
+ jogo considerando uma plataforma unidimensional, onde cada posição da 
+plataforma possui o tamanho do salto (quantidade de posições do 
+deslocamento) e a direção do salto (esquerda ou direita) que o 
+personagem deve realizar ao chegar naquela posição.</p>
+<p>A plataforma é representada por uma lista de <code>n</code> elementos, onde a i-ésima posição da plataforma é indicada pelo i-ésimo elemento da lista, com <code>1</code> ≤ <code>i</code> ≤ <code>n</code>. Cada posição possui um valor inteiro <code>Z</code> que é positivo, se o personagem deve saltar <code>|Z|</code> posições para direita, ou negativo, se o personagem deve saltar <code>|Z|</code> posições para a esquerda (<code>|Z|</code> representa o valor absoluto de <code>Z</code>). Além disso, o personagem começa o jogo em uma posição inicial <code>i</code>.</p>
+<p>Ao realizar o salto, se o personagem cai em uma posição <code>x</code> fora da lista (<code>x &lt; 1</code> ou <code>x &gt; n</code>),
+ dizemos que o jogador saiu da plataforma, e se o personagem cai em uma 
+posição que já visitou anteriormente, dizemos que o personagem está em 
+loop.
+O seu programa deve determinar se o personagem sai pela esquerda 
+(posição final menor do que <code>1</code>), sai pela direita (posição final maior do que <code>n</code>), ou se entra em loop.</p>
+<p>O seu programa receberá como entrada uma lista de <code>n</code> valores inteiros que representa a plataforma e a posição inicial <code>i</code> do personagem, sendo que <code>1</code> ≤ <code>i</code> ≤ <code>n</code>.
+ Como saída, o seu programa deverá imprimir a sequência de posições 
+visitadas pelo personagem (incluindo a posição inicial, mas sem posições
+ repetidas ou posições inexistentes) e uma mensagem indicando o estado 
+final (<code>esquerda</code>, <code>direita</code>, ou <code>loop</code>).</p>
+<p>Exemplos de entradas e saídas esperadas pelo seu programa:</p>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/06/dados/arq01.in">Entrada</a></p>
+<pre><code>-5 2 -2 5 -2 -2 -4 -3 3 2 4 -2 4
+9
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/06/dados/arq01.out">Saída</a></p>
+<pre><code>9
+12
+10
+loop
+</code></pre>
+<h3>
+<a id="user-content-teste-02" class="anchor" href="#teste-02" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 02</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/06/dados/arq02.in">Entrada</a></p>
+<pre><code>-5 1 -4 1 -3 -5
+5
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/06/dados/arq02.out">Saída</a></p>
+<pre><code>5
+2
+3
+esquerda
+</code></pre>
+<h3>
+<a id="user-content-teste-03" class="anchor" href="#teste-03" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 03</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/06/dados/arq03.in">Entrada</a></p>
+<pre><code>3 -3 5 5 2 5 4 -2 1 2 -1 3
+5
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/06/dados/arq03.out">Saída</a></p>
+<pre><code>5
+7
+11
+10
+12
+direita
+</code></pre>
+<h2>
+<a id="user-content-código-base" class="anchor" href="#c%C3%B3digo-base" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Código Base</h2>
+<p>No arquivo auxiliar lab06.py você irá encontrar um código base para 
+dar início ao processo de elaboração dessa tarefa. Além disso, nele você
+ encontrará o código para leitura da entrada.</p>
+<pre><code># Leitura de dados
+
+plataforma = [int(i) for i in input().split()]
+i = int(input())
+</code></pre>
+<h2>
+<a id="user-content-orientações" class="anchor" href="#orienta%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Orientações</h2>
+<ul>
+<li>Veja <a href="https://susy.ic.unicamp.br:9999/mc102multi/06">aqui</a> a página de submissão da tarefa.</li>
+<li>O arquivo a ser submetido deve se chamar lab06.py.</li>
+<li>No link "Arquivos auxiliares" há um arquivo compactado (aux06.zip) 
+que contém todos os arquivos de testes abertos (entradas e saídas 
+esperadas).</li>
+<li>O laboratório é composto de 10 testes abertos e 10 testes fechados.</li>
+<li>O limite máximo será de 20 submissões.</li>
+<li>Acesse o sistema SuSy com seu RA (apenas números) e a senha que você utiliza para fazer acesso ao sistema da DAC.</li>
+<li>Você deve seguir as instruções de submissão descritas no enunciado.</li>
+<li>Serão considerados apenas os resultados da última submissão.</li>
+<li>Esta tarefa tem peso 2.</li>
+<li>O prazo final para submissão é dia 16/05/2021 (domingo).</li>
+</ul>
+
+    </article>
+
+
+</body></html>

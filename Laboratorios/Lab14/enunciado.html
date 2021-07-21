@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 14</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h1>
+<a id="user-content-caça-números" class="anchor" href="#ca%C3%A7a-n%C3%BAmeros" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Caça-Números</h1>
+<p>Caça-palavras é um jogo de passatempo que consiste em encontrar 
+palavras em uma grade retangular, onde as letras estão dispostas de 
+forma aparentemente aleatória. A medida que o tamanho da grade cresce, 
+encontrar novas palavras fica cada vez mais difícil. Variações desse 
+jogo podem ser criadas alterando os valores presentes na grade ou o 
+padrão que deve ser buscado.</p>
+<p>Uma empresa renomada no mercado de jogos de passatempo está desenvolvendo a ideia de uma nova variação do jogo chamada de <em>Caça-Números</em>.
+ Nessa nova variação, cada posição da grade possui um número inteiro, 
+sendo os valores possíveis de 1 (um) até 9 (nove). Além disso, ao invés 
+de ser fornecida uma palavra para ser buscada na grade, um padrão 
+formado por uma sequência de caracteres (string) é dado onde cada 
+caractere representa uma característica de um número que deve ser 
+encontrado, sendo eles:</p>
+<ul>
+<li>A (any): qualquer número.</li>
+<li>E (even): números pares.</li>
+<li>O (odd): números ímpares.</li>
+<li>C (composite): números compostos (4, 6, 8, 9).</li>
+<li>P (prime): números primos (2, 3, 5, 7).</li>
+<li>S (singular): número 1.</li>
+<li>T (three): números múltiplos de três (3, 6, 9).</li>
+</ul>
+<p>A busca na grade pode ser feita na horizontal (para cima ou para 
+baixo), vertical (para a direita ou para a esquerda) e nas quatro 
+diagonais. Além disso, os números poderão ser reutilizados para formar o
+ padrão buscado. Por exemplo, considerando a grade de números a seguir e
+ buscando pelo padrão <em><strong>ETETET</strong></em>, os números <em><strong>2</strong></em> e <em><strong>3</strong></em> poderão ser reutilizados para formar o padrão buscado.</p>
+<pre><code>1 1 1
+1 2 3
+1 1 1
+</code></pre>
+<p>O objetivo dessa versão será determinar as posições iniciais (linha e
+ coluna), a partir das quais é possível formar o padrão desejado. A 
+grade de números e o padrão desejado são produzidos de forma automática 
+pela empresa. Entretanto, nenhuma verificação é realizada para saber se é
+ possível ou não encontrar o padrão informado. A empresa não quer 
+disponibilizar um jogo para os clientes em que não é possível encontrar 
+uma solução, pois isso seria horrível para a reputação dela no mercado. O
+ diretor da empresa, sabendo desse problema, solicitou que um(a) 
+programador(a) desenvolva um programa para verificar se é possível 
+encontrar o padrão desejado ou não na grade. Sabendo das suas 
+habilidades com programação, você foi encarregado(a) de realizar essa 
+tarefa.</p>
+<p>A entrada do programa consiste em: <em><strong>L</strong></em> linhas representando a grade, sendo que cada linha possui <em><strong>C</strong></em> números separados por um único espaço. Por fim, é dada uma string indicando o padrão que deve ser buscado.</p>
+<p>Como saída, seu programa deverá exibir as posições na grade (linha e 
+coluna) em que é possível formar o padrão a partir desse ponto inicial. 
+As posições deverão ser exibidas seguindo a ordem <em>raster</em> (de cima para baixo, da esquerda para direita). Note que a posição no canto superior esquerdo da grade é a posição <code>(1,1)</code>. Caso não seja possível identificar o padrão na grade, seu programa deverá imprimir a seguinte mensagem:</p>
+<pre><code>Nenhum padrao encontrado!
+</code></pre>
+<p>Exemplos de entradas e saídas esperadas pelo seu programa:</p>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/14/dados/arq01.in">Entrada</a></p>
+<pre><code>2 4 6 8 2
+8 3 5 7 4
+6 3 1 7 6
+4 3 5 7 8
+2 8 6 4 2
+SPA
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/14/dados/arq01.out">Saída</a></p>
+<pre><code>Posicoes: (3, 3)
+</code></pre>
+<h3>
+<a id="user-content-teste-02" class="anchor" href="#teste-02" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 02</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/14/dados/arq02.in">Entrada</a></p>
+<pre><code>1 3 5 7 9
+1 3 5 7 9
+1 3 5 7 9
+1 3 5 7 9
+1 3 5 7 9
+OTPPTE
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/14/dados/arq02.out">Saída</a></p>
+<pre><code>Nenhum padrao encontrado!
+</code></pre>
+<h3>
+<a id="user-content-teste-03" class="anchor" href="#teste-03" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 03</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/14/dados/arq03.in">Entrada</a></p>
+<pre><code>1 1 9 1 1 1 9
+2 1 8 1 2 1 8
+3 1 7 1 3 1 7
+4 1 6 1 4 1 6
+5 1 5 1 5 1 5
+6 1 4 1 6 1 4
+7 1 3 1 7 1 3
+8 1 2 1 8 1 2
+9 1 1 1 9 1 1
+TCPOPE
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/14/dados/arq03.out">Saída</a></p>
+<pre><code>Posicoes: (1, 3) (1, 7) (3, 1) (3, 5) (7, 3) (7, 7) (9, 1) (9, 5)
+</code></pre>
+<h2>
+<a id="user-content-código-base" class="anchor" href="#c%C3%B3digo-base" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Código Base</h2>
+<p>No arquivo auxiliar lab14.py você irá encontrar um código base para 
+dar início ao processo de elaboração deste laboratório. Para facilitar a
+ implementação do seu programa, no código base existe o cabeçalho de uma
+ função com a descrição do que deve ser desenvolvido. A ideia é que a 
+função desenvolvida para obter uma solução para o problema seja 
+recursiva. Além disso, no código base, também é fornecida a formatação 
+para imprimir a solução do problema.</p>
+<pre><code>def busca_padrao(matriz, linha, coluna, padrao):
+  ...
+
+matriz = []
+posicoes = []
+...
+  print("Nenhum padrao encontrado!")
+...
+  print(("Posicoes: " + " ".join([str((linha, coluna)) for linha, coluna in posicoes])).strip())
+</code></pre>
+<h2>
+<a id="user-content-orientações" class="anchor" href="#orienta%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Orientações</h2>
+<ul>
+<li>Veja <a href="https://susy.ic.unicamp.br:9999/mc102multi/14">aqui</a> a página de submissão da tarefa.</li>
+<li>O arquivo a ser submetido deve se chamar lab14.py.</li>
+<li>No link "Arquivos auxiliares" há um arquivo compactado (aux14.zip) 
+que contém todos os arquivos de testes abertos (entradas e saídas 
+esperadas).</li>
+<li>O laboratório é composto de 10 testes abertos e 10 testes fechados.</li>
+<li>O limite máximo será de 20 submissões.</li>
+<li>Acesse o sistema SuSy com seu RA (apenas números) e a senha que você utiliza para fazer acesso ao sistema da DAC.</li>
+<li>Você deve seguir as instruções de submissão descritas no enunciado.</li>
+<li>Serão considerados apenas os resultados da última submissão.</li>
+<li>Esta tarefa tem peso 4.</li>
+<li>O prazo final para submissão é dia 11/07/2021 (domingo).</li>
+</ul>
+
+    </article>
+
+
+</body></html>

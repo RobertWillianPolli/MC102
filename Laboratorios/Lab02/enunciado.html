@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 02</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h1>
+<a id="user-content-o-grande-show" class="anchor" href="#o-grande-show" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>O Grande Show</h1>
+<p>A sua banda favorita irá fazer uma grande transmissão ao vivo com as 
+músicas do álbum mais recente. Infelizmente, você não está em sua casa, 
+mas em outra cidade vizinha, e, para piorar a situação, o carro quebrou!
+ A única chance de ver esse grande show desde o início é pegar um trem 
+para sua cidade natal.</p>
+<p>Chegando na estação de trem, o atendente da bilheteria avisa que não 
+tem passagem direta. A única opção é comprar uma passagem da cidade 
+atual (cidade A) para outra cidade vizinha (cidade B), seguida de uma 
+viagem da cidade B para a sua cidade natal (cidade C). Para não correr o
+ risco de não existir bilhetes disponíveis no segundo trem, você já 
+comprou o bilhete da segunda viagem com o atendente, mas não sabe a 
+priori se chegará antes do segundo trem partir.</p>
+<p>Nesta atividade, você deverá desenvolver um programa para verificar 
+se é possível chegar em casa antes do início do show da sua banda 
+favorita. Considere que a troca entre os trens na cidade B é feita 
+instantaneamente (você está com muita pressa, para não perder o show) e 
+que a estação da cidade C é muito próxima da sua casa, ou seja, caso 
+chegue até o início da transmissão, não irá perder nenhum detalhe deste 
+grande evento.</p>
+<p>A entrada desse programa é formada pelos seguintes valores (um em cada linha e seguindo a ordem abaixo):</p>
+<ul>
+<li>
+<code>dist_a_b</code>: distância da cidade atual (cidade A) para a segunda cidade (cidade B), em km (valor inteiro).</li>
+<li>
+<code>vel_t1</code>: velocidade do trem que fará a viagem da cidade A para a cidade B, em km/h (valor real).</li>
+<li>
+<code>t_b_c</code>: tempo de partida do trem da cidade B para sua cidade
+ natal (cidade C), em relação ao instante de saída do primeiro trem, em 
+minutos (valor inteiro).</li>
+<li>
+<code>dist_b_c</code>: distância da cidade B para a cidade C, em km (valor inteiro).</li>
+<li>
+<code>vel_t2</code>: velocidade do trem que fará a viagem da cidade B para a cidade C, em km/h (valor real).</li>
+<li>
+<code>t_show</code>: tempo para o início do show, a partir do instante de saída do primeiro trem, em minutos (valor inteiro).</li>
+</ul>
+<p>O seu programa deve imprimir <code>True</code>, caso você chegue antes do início do show, ou <code>False</code>,
+ caso contrário. Note que, para conseguir chegar antes do início do 
+show, você também tem que chegar na cidade B antes do segundo trem 
+partir.</p>
+<p>Exemplos de entradas e saídas esperadas pelo seu programa:</p>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/02/dados/arq01.in">Entrada</a></p>
+<pre><code>5
+50
+10
+6
+60
+20
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/02/dados/arq01.out">Saída</a></p>
+<pre><code>True
+</code></pre>
+<h3>
+<a id="user-content-teste-02" class="anchor" href="#teste-02" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 02</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/02/dados/arq02.in">Entrada</a></p>
+<pre><code>5
+50
+5
+6
+60
+20
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/02/dados/arq02.out">Saída</a></p>
+<pre><code>False
+</code></pre>
+<h3>
+<a id="user-content-teste-03" class="anchor" href="#teste-03" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 03</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/02/dados/arq03.in">Entrada</a></p>
+<pre><code>5
+50
+10
+6
+60
+15
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/02/dados/arq03.out">Saída</a></p>
+<pre><code>False
+</code></pre>
+<h2>
+<a id="user-content-código-base" class="anchor" href="#c%C3%B3digo-base" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Código Base</h2>
+<p>No arquivo auxiliar lab02.py você irá encontrar um código base para dar início ao processo de elaboração desse programa.</p>
+<h2>
+<a id="user-content-orientações" class="anchor" href="#orienta%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Orientações</h2>
+<ul>
+<li>Veja <a href="https://susy.ic.unicamp.br:9999/mc102multi/02">aqui</a> a página de submissão da tarefa.</li>
+<li>O arquivo a ser submetido deve se chamar lab02.py.</li>
+<li>No link "Arquivos auxiliares" há um arquivo compactado (aux02.zip) 
+que contém todos os arquivos de testes abertos (entradas e saídas 
+esperadas).</li>
+<li>O laboratório é composto de 10 testes abertos e 10 testes fechados.</li>
+<li>O limite máximo será de 20 submissões.</li>
+<li>Acesse o sistema SuSy com seu RA (apenas números) e a senha que você utiliza para fazer acesso ao sistema da DAC.</li>
+<li>Você deve seguir as instruções de submissão descritas no enunciado.</li>
+<li>Serão considerados apenas os resultados da última submissão.</li>
+<li>Esta tarefa tem peso 1.</li>
+<li>O prazo final para submissão é dia 18/04/2021 (domingo).</li>
+</ul>
+
+    </article>
+
+
+</body></html>

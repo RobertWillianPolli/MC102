@@ -1,8 +1,7 @@
 ###################################################
 # MC102 - Algoritmos e Programação de Computadores
 # Laboratório 10 - Caça ao Tesouro
-# Nome: ROBERT WILLIAN POLLI    DATA: 26/05/21
-# RA: 187848
+# DATA: 26/05/21
 ###################################################
 
 # Leitura da matriz

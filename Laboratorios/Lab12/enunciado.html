@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 12</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h1>
+<a id="user-content-processamento-de-imagens" class="anchor" href="#processamento-de-imagens" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Processamento de Imagens</h1>
+
+<p>Uma imagem digital é a projeção de uma matriz, que representa a imagem, em uma tela. Cada posição <code>(x,y)</code> da matriz, onde <code>x</code> é o número da linha e <code>y</code> é o número da coluna, representa um pixel (<em>picture element</em>) <code>p(x,y)</code>. O valor de <code>p(x,y)</code> indica a cor que deve ser projetada na posição correspondente da imagem. O pixel no canto superior esquerdo da imagem é o <code>p(1,1)</code> e o pixel no canto inferior direito da imagem é o <code>p(n,m)</code>, para uma imagem com <code>n</code> linhas e <code>m</code> colunas.</p>
+<p>Nas imagens em tons de cinza PGM (Portable Graymap Format), esse 
+valor descreve a intensidade do ponto projetado que varia de 0 (preto) a
+ 255 (branco). As coordenadas da matriz seguem a ordem <em>raster</em> (de cima para baixo, da esquerda para direita). Abaixo temos um exemplo do conteúdo de um arquivo PGM.</p>
+<pre><code>P2
+24 7
+255
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 51 51 51 51 0 0 51 51 51 51 0 0 119 119 119 119 0 0 119 119 119 119 0
+0 51 0 0 0 0 0 51 0 0 0 0 0 119 0 0 0 0 0 119 0 0 119 0
+0 51 51 51 0 0 0 51 51 51 0 0 0 119 119 119 0 0 0 119 119 119 119 0
+0 51 0 0 0 0 0 51 0 0 0 0 0 119 0 0 0 0 0 119 0 0 0 0
+0 51 0 0 0 0 0 51 51 51 51 0 0 119 119 119 119 0 0 119 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+</code></pre>
+<p>O cabeçalho do arquivo é formado pelas três primeiras linhas, sendo que a primeira linha possui o valor <code>P2</code>, o qual indica o formato do arquivo; a segunda linha possui dois valores inteiros <code>m</code> e <code>n</code>
+ que representam o número de colunas e linhas, respectivamente; e a 
+terceira linha possui o valor máximo que um pixel pode assumir, no nosso
+ caso, esse valor sempre será <code>255</code>. Depois do cabeçalho, o arquivo possui <code>n</code> linhas, onde cada linha possui <code>m</code> valores inteiros separados por um espaço em branco. Cada um desses valores representa um pixel da imagem em escala de cinza.
+Uma imagem no formato PGM pode ser visualizada utilizando este <a href="https://www.kylepaulsen.com/stuff/NetpbmViewer/" rel="nofollow">site</a>.</p>
+<p>Programas de edição e processamento de imagens possuem diversos 
+operações para manipulação de imagens, neste laboratório você deve 
+implementar um programa que realiza a aplicação das seguintes operações:
+ <em>flip</em>, <em>shift</em>, <em>crop</em> e <em>shrink</em>.</p>
+<h2>
+<a id="user-content-flip" class="anchor" href="#flip" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Flip</h2>
+<p><strong>Flip</strong> é a operação que espelha uma imagem na horizontal ou na vertical. Considerando o <strong>flip</strong> horizontal, cada pixel <code>p(x,y)</code> da imagem resultante é igual ao pixel <code>p'(x', y')</code> da imagem original, sendo que <code>x' = x</code> e <code>y' = m + 1 - y</code>, onde <code>m</code> é a quantidade de colunas. Já para o <strong>flip</strong> vertical, cada pixel  <code>p(x,y)</code> da imagem resultante&nbsp;é igual ao pixel <code>p'(x', y')</code> da imagem original, sendo que <code>x' = n + 1 - x</code> e <code>y' = y</code>, onde <code>n</code> é o número de linhas da imagem.</p>
+<p>A seguir exemplificamos a operação de <strong>flip</strong> horizontal. Os números na vertical e horizontal de cada imagem representam o número da linha e da coluna, respectivamente.</p>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/12/flip.png" target="_blank" rel="noopener noreferrer"><img src="enunciado_files/flip.png" alt="Flip Image" style="max-width:100%;"></a></p>
+<h2>
+<a id="user-content-shift" class="anchor" href="#shift" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Shift</h2>
+<p><strong>Shift</strong> é a operação de deslocamento dos pixels de uma
+ imagem na horizontal ou na vertical. Essa operação recebe um parâmetro 
+de valor inteiro <code>x</code> que indica o valor de deslocamento. Além
+ disso, o tamanho da imagem resultado deve ser igual ao tamanho da 
+imagem original. Considerando o <strong>shift</strong> horizontal, cada pixel é deslocado <code>x</code> posições para a direita e as <code>x</code> primeiras colunas da imagem resultante serão iguais as <code>x</code> últimas colunas da imagem original. Considerando o <strong>shift</strong> vertical, cada pixel é deslocado <code>x</code> posições para baixo e as <code>x</code> primeiras linhas da imagem resultante serão iguais as <code>x</code> últimas linhas da imagem original.</p>
+<p>A seguir exemplificamos a operação de <strong>shift</strong> horizontal com <code>x = 6</code>. Os números na vertical e horizontal de cada imagem representam o número da linha e da coluna, respectivamente.</p>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/12/shift.png" target="_blank" rel="noopener noreferrer"><img src="enunciado_files/shift.png" alt="Shift Image" style="max-width:100%;"></a></p>
+<h2>
+<a id="user-content-crop" class="anchor" href="#crop" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Crop</h2>
+<p><strong>Crop</strong> é a operação de recorte de uma imagem. Essa operação recebe dois parâmetros: posição inicial <code>(x',y')</code> do corte, que indica o canto superior esquerdo da imagem resultante, e a posição final <code>(x",y")</code>, que indica o canto inferior direito da imagem resultante.</p>
+<p>A operação de <strong>crop</strong> é ilustrada a seguir. Os números 
+na vertical e horizontal de cada imagem representam o número da linha e 
+da coluna, respectivamente.</p>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/12/crop.png" target="_blank" rel="noopener noreferrer"><img src="enunciado_files/crop.png" alt="Crop Image" style="max-width:100%;"></a></p>
+<h2>
+<a id="user-content-shrink" class="anchor" href="#shrink" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Shrink</h2>
+<p><strong>Shrink</strong> é a operação de encolhimento de uma imagem. 
+Nessa operação, a imagem é dividida em matrizes distintas de tamanho 
+2x2. Cada matriz <code>M</code> de pixels distintos da imagem original 
+corresponde a um pixel da imagem resultante, sendo que esse pixel é 
+igual ao valor máximo de <code>M</code>. Considere que as imagens de teste para a operação de <strong>shrink</strong> possuem um número par de linhas e colunas.</p>
+
+<p>A seguir exemplificamos essa operação. Cada submatriz da imagem 
+original é indicada por um quadrado de borda azul. Note que a imagem 
+resultante possui <code>n/2</code> linhas e <code>m/2</code> colunas.</p>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/12/shrink.png" target="_blank" rel="noopener noreferrer"><img src="enunciado_files/shrink.png" alt="Shrink Image" style="max-width:100%;"></a></p>
+<h2>
+<a id="user-content-entrada" class="anchor" href="#entrada" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Entrada</h2>
+<p>O seu programa receberá como entrada as seguintes linhas (em ordem): uma linha contendo o valor <code>P2</code>, que indica o formato do arquivo e deve ser desconsiderada; uma linha contendo dois números <code>m</code> e <code>n</code>,
+ que indicam o número de colunas e linhas, respectivamente; uma linha 
+que contém o valor máximo que um pixel pode assumir (no nosso caso, esse
+ valor sempre será <code>255</code>); <code>n</code> linhas que possuem <code>m</code> valores inteiros separados por espaços, representando os valores de cada pixel da imagem em escala de cinza, na ordem <em>raster</em> (de cima para baixo, da esquerda para direita); uma linha com o nome da operação a ser aplicada (<code>flip</code>, <code>shift</code>, <code>crop</code>, <code>shrink</code>); e os parâmetros da operação.</p>
+<p>Os parâmetros para cada operação são:</p>
+<ul>
+<li>
+<strong>Flip</strong>: um parâmetro <code>p</code> com valor <code>horizontal</code> ou <code>vertical</code> que indica o tipo de <strong>flip</strong> a ser feito.</li>
+<li>
+<strong>Shift</strong>: um parâmetro <code>p</code> com valor <code>horizontal</code> ou <code>vertical</code> que indica o tipo de <strong>shift</strong> a ser feito; e um parâmetro <code>x</code> que indica o valor de deslocamento.</li>
+<li>
+<strong>Crop</strong>: uma linha com dois valores que indicam a posição inicial <code>(x,y)</code> e uma linha com dois valores que indicam a posição final <code>(x',y')</code>.</li>
+<li>
+<strong>Shrink</strong>: nenhum parâmetro adicional.</li>
+</ul>
+<p>Exceto pelas linhas que descrevem a operação a ser aplicada, a entrada constitui uma imagem no formato PGM.</p>
+<h2>
+<a id="user-content-saída" class="anchor" href="#sa%C3%ADda" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Saída</h2>
+<p>A saída deverá ser impressa no formato PGM, contendo a imagem 
+resultante da aplicação da operação. As primeiras três linhas 
+representam o cabeçalho da imagem gerada: a primeira linha deverá conter
+ apenas a string <code>P2</code>, que indica o formato do arquivo; a 
+segunda linha conterá dois números inteiros indicando o número de 
+colunas e o número de linhas da imagem, respectivamente; e a terceira 
+linha indicará o valor máximo que um pixel da imagem pode conter (que 
+sempre será <code>255</code>). As linhas seguintes deverão conter os 
+valores (números inteiros) dos pixels resultantes da aplicação da 
+operação, esses valores são separados por um único caractere em branco.</p>
+<p>Você pode visualizar as imagens no formato PGM usando este <a href="https://www.kylepaulsen.com/stuff/NetpbmViewer/" rel="nofollow">site</a>. Para entender o efeito de cada operação, visualize todas imagens dos casos de <a href="https://susy.ic.unicamp.br:9999/mc102multi/12/dados/testes.html">testes abertos</a>, tanto as imagens de entrada (arquivos *.in), quanto as de saídas (arquivos *.out).</p>
+<h2>
+<a id="user-content-código-base" class="anchor" href="#c%C3%B3digo-base" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Código Base</h2>
+<p>No arquivo auxiliar lab12.py você irá encontrar um código base para 
+dar início ao processo de elaboração deste laboratório. Para facilitar a
+ implementação do seu programa, no código base existem os cabeçalhos das
+ funções correspondentes a cada operação. Cada função desempenha uma 
+tarefa bastante específica. Usando essas funções é possível obter uma 
+solução para o problema. Os cabeçalhos das funções a serem implementadas
+ são apresentados a seguir.</p>
+<pre><code>def flip_horizontal(imagem_original):
+  ...
+
+def flip_vertical(imagem_original):
+  ...
+
+def shift_vertical(imagem_original, x):
+  ...
+
+def shift_horizontal(imagem_original, x):
+  ...
+
+def crop(imagem_original, x1, y1, x2, y2):
+  ...
+
+def shrink(imagem_original):
+  ...
+  
+</code></pre>
+<p>Exemplos de entradas e saídas esperadas pelo seu programa:</p>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/12/dados/arq01.in">Entrada</a></p>
+<pre><code>P2
+24 7
+255
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 30 30 30 30 0 0 30 30 30 30 0 0 100 100 100 100 0 0 180 180 180 180 0 
+0 30 0 0 0 0 0 30 0 0 0 0 0 100 0 0 0 0 0 180 0 0 180 0 
+0 30 30 30 0 0 0 30 30 30 0 0 0 100 100 100 0 0 0 180 180 180 180 0 
+0 30 0 0 0 0 0 30 0 0 0 0 0 100 0 0 0 0 0 180 0 0 0 0 
+0 30 0 0 0 0 0 30 30 30 30 0 0 100 100 100 100 0 0 180 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+flip
+horizontal
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/12/dados/arq01.out">Saída</a></p>
+<pre><code>P2
+24 7
+255
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 180 180 180 180 0 0 100 100 100 100 0 0 30 30 30 30 0 0 30 30 30 30 0
+0 180 0 0 180 0 0 0 0 0 100 0 0 0 0 0 30 0 0 0 0 0 30 0
+0 180 180 180 180 0 0 0 100 100 100 0 0 0 30 30 30 0 0 0 30 30 30 0
+0 0 0 0 180 0 0 0 0 0 100 0 0 0 0 0 30 0 0 0 0 0 30 0
+0 0 0 0 180 0 0 100 100 100 100 0 0 30 30 30 30 0 0 0 0 0 30 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+</code></pre>
+<h3>
+<a id="user-content-teste-03" class="anchor" href="#teste-03" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 03</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/12/dados/arq03.in">Entrada</a></p>
+<pre><code>P2
+24 7
+255
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+0 30 30 30 30 0 0 30 30 30 30 0 0 100 100 100 100 0 0 180 180 180 180 0 
+0 30 0 0 0 0 0 30 0 0 0 0 0 100 0 0 0 0 0 180 0 0 180 0 
+0 30 30 30 0 0 0 30 30 30 0 0 0 100 100 100 0 0 0 180 180 180 180 0 
+0 30 0 0 0 0 0 30 0 0 0 0 0 100 0 0 0 0 0 180 0 0 0 0 
+0 30 0 0 0 0 0 30 30 30 30 0 0 100 100 100 100 0 0 180 0 0 0 0 
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+shift
+horizontal
+6
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/12/dados/arq03.out">Saída</a></p>
+<pre><code>P2
+24 7
+255
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 180 180 180 180 0 0 30 30 30 30 0 0 30 30 30 30 0 0 100 100 100 100 0
+0 180 0 0 180 0 0 30 0 0 0 0 0 30 0 0 0 0 0 100 0 0 0 0
+0 180 180 180 180 0 0 30 30 30 0 0 0 30 30 30 0 0 0 100 100 100 0 0
+0 180 0 0 0 0 0 30 0 0 0 0 0 30 0 0 0 0 0 100 0 0 0 0
+0 180 0 0 0 0 0 30 0 0 0 0 0 30 30 30 30 0 0 100 100 100 100 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+</code></pre>
+<h3>
+<a id="user-content-teste-06" class="anchor" href="#teste-06" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 06</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/12/dados/arq06.in">Entrada</a></p>
+<pre><code>P2
+24 6
+255
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 80 80 80 80 0 0 80 80 80 80 0 0 130 130 130 130 0 0 180 180 180 180 0
+0 80 0 0 0 0 0 80 0 0 0 0 0 130 0 0 0 0 0 180 0 0 180 0
+0 80 80 80 0 0 0 80 80 80 0 0 0 130 130 130 0 0 0 180 180 180 180 0
+0 80 0 0 0 0 0 80 0 0 0 0 0 130 0 0 0 0 0 180 0 0 0 0
+0 80 0 0 0 0 0 80 80 80 80 0 0 130 130 130 130 0 0 180 0 0 0 0
+shrink
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/12/dados/arq06.out">Saída</a></p>
+<pre><code>P2
+12 3
+255
+80 80 80 80 80 80 130 130 130 180 180 180
+80 80 0 80 80 0 130 130 0 180 180 180
+80 0 0 80 80 80 130 130 130 180 0 0
+</code></pre>
+<h3>
+<a id="user-content-teste-08" class="anchor" href="#teste-08" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 08</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/12/dados/arq08.in">Entrada</a></p>
+<pre><code>P2
+25 7
+255
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 80 80 80 80 0 0 80 80 80 80 0 0 130 130 130 130 0 0 180 180 180 180 0 0
+0 80 0 0 0 0 0 80 0 0 0 0 0 130 0 0 0 0 0 180 0 0 180 0 0
+0 80 80 80 0 0 0 80 80 80 0 0 0 130 130 130 0 0 0 180 180 180 180 0 0
+0 80 0 0 0 0 0 80 0 0 0 0 0 130 0 0 0 0 0 180 0 0 0 0 0
+0 80 0 0 0 0 0 80 80 80 80 0 0 130 130 130 130 0 0 180 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+crop
+2 2
+6 23
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/12/dados/arq08.out">Saída</a></p>
+<pre><code>P2
+22 5
+255
+80 80 80 80 0 0 80 80 80 80 0 0 130 130 130 130 0 0 180 180 180 180
+80 0 0 0 0 0 80 0 0 0 0 0 130 0 0 0 0 0 180 0 0 180
+80 80 80 0 0 0 80 80 80 0 0 0 130 130 130 0 0 0 180 180 180 180
+80 0 0 0 0 0 80 0 0 0 0 0 130 0 0 0 0 0 180 0 0 0
+80 0 0 0 0 0 80 80 80 80 0 0 130 130 130 130 0 0 180 0 0 0
+</code></pre>
+<h2>
+<a id="user-content-orientações" class="anchor" href="#orienta%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Orientações</h2>
+<ul>
+<li>Veja <a href="https://susy.ic.unicamp.br:9999/mc102multi/12">aqui</a> a página de submissão da tarefa.</li>
+<li>O arquivo a ser submetido deve se chamar lab12.py.</li>
+<li>No link "Arquivos auxiliares" há um arquivo compactado (aux12.zip) 
+que contém todos os arquivos de testes abertos (entradas e saídas 
+esperadas).</li>
+<li>O laboratório é composto de 10 testes abertos e 10 testes fechados.</li>
+<li>O limite máximo será de 20 submissões.</li>
+<li>Acesse o sistema SuSy com seu RA (apenas números) e a senha que você utiliza para fazer acesso ao sistema da DAC.</li>
+<li>Você deve seguir as instruções de submissão descritas no enunciado.</li>
+<li>Serão considerados apenas os resultados da última submissão.</li>
+<li>Esta tarefa tem peso 3.</li>
+<li>O prazo final para submissão é dia 27/06/2021 (domingo).</li>
+</ul>
+
+    </article>
+
+
+</body></html>

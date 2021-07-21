@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 15</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h1>
+<a id="user-content-pandemia-de-fake-news" class="anchor" href="#pandemia-de-fake-news" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pandemia de Fake News</h1>
+<p>Com o aumento do uso das redes sociais, um problema que vem crescendo é a proliferação de notícias falsas (<em>fake news</em>).
+ A difusão dessas notícias se comporta como uma pandemia. Usaremos esse 
+comportamento neste laboratório para implementar um modelo bem simples 
+para a propagação de <em>fake news</em>.</p>
+<p>Cada pessoa reage de uma forma diferente ao receber uma notícia 
+falsa. Algumas pessoas são infectadas e propagam essa notícia enquanto 
+outras verificam sua veracidade e servem de bloqueio para a disseminação
+ da mesma. No nosso modelo, iremos representar uma população por uma 
+matriz retangular de caracteres. Cada elemento da matriz terá um dos 
+seguintes caracteres:</p>
+<ul>
+<li>
+<code>'.'</code>: representando espaços sem nenhuma pessoa;</li>
+<li>
+<code>'#'</code>: representando pessoas que bloqueiam notícias falsas;</li>
+<li>
+<code>'0'</code>-<code>'9'</code>: representando pessoas que propagam notícias com intensidade igual ao número indicado.</li>
+</ul>
+<p>Uma pessoa será inicialmente infectada ao dar origem a notícia e a 
+propagação da notícia ocorrerá da seguinte forma. Cada pessoa infectada,
+ com intensidade <code>d</code>, irá infectar todas as pessoas em sua mesma linha e coluna que estejam no máximo a <code>d</code> posições dela, a menos que um bloqueio seja encontrado. Quando um bloqueio (<code>#</code>)
+ é encontrado, a infecção nessa direção é interrompida. Uma pessoa que 
+bloqueia a notícia nunca é infectada. Note que espaços sem pessoas (<code>.</code>) não são marcados como infectados, mas também não bloqueiam a infecção.</p>
+<p>O seu programa deve receber a seguinte entrada: uma linha com um número inteiro <code>n</code> que indica a quantidade de linhas da matriz; as <code>n</code> linhas da matriz; dois números inteiros <code>x</code> e <code>y</code>
+ indicando a linha e coluna da matriz correspondente a pessoa que 
+originou a notícia falsa. A posição no canto superior esquerdo da matriz
+ corresponde à posição <code>(0,0)</code>. Como saída, seu programa deve imprimir a matriz no mesmo formato da entrada com o caractere <code>'X'</code> substituindo o caractere correspondente a cada pessoa infectada.</p>
+<p>Exemplos de entradas e saídas esperadas para o seu programa:</p>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/15/dados/arq01.in">Entrada</a></p>
+<pre><code>4
+..555......1
+............
+111111111111
+............
+2 6
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/15/dados/arq01.out">Saída</a></p>
+<pre><code>..555......1
+............
+XXXXXXXXXXXX
+............
+</code></pre>
+<h3>
+<a id="user-content-teste-04" class="anchor" href="#teste-04" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 04</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/15/dados/arq04.in">Entrada</a></p>
+<pre><code>11
+..1014101..
+...........
+...........
+1...101...1
+4...030...4
+1.0102010.1
+4...030...4
+1...101...1
+...........
+...........
+..1014101..
+5 5
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/15/dados/arq04.out">Saída</a></p>
+<pre><code>..1014101..
+...........
+...........
+1...1X1...1
+4...XXX...4
+1.XXXXXXX.1
+4...XXX...4
+1...1X1...1
+...........
+...........
+..1014101..
+</code></pre>
+<h3>
+<a id="user-content-teste-07" class="anchor" href="#teste-07" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 07</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/15/dados/arq07.in">Entrada</a></p>
+<pre><code>11
+...........
+.....1.....
+....1#1....
+...1#1#1...
+..1#111#1..
+.1#11111#1.
+..1#111#1..
+...1#1#1...
+....1#1....
+.....1.....
+...........
+6 6
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/15/dados/arq07.out">Saída</a></p>
+<pre><code>...........
+.....1.....
+....1#1....
+...1#X#1...
+..1#XXX#1..
+.1#XXXXX#1.
+..1#XXX#1..
+...1#X#1...
+....1#1....
+.....1.....
+...........
+</code></pre>
+<h2>
+<a id="user-content-código-base" class="anchor" href="#c%C3%B3digo-base" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Código Base</h2>
+<p>No arquivo auxiliar lab15.py você irá encontrar um código base para 
+dar início ao processo de elaboração desta tarefa. Para facilitar a 
+implementação do seu programa, no código base, existe o cabeçalho de uma
+ função com a descrição do que deve ser desenvolvido. A ideia é que a 
+função desenvolvida para obter uma solução para o problema seja 
+recursiva. Além disso, o código base também contém um trecho para 
+leitura dos dados e para a impressão da resposta. Durante a 
+implementação da função, lembre-se que o método <code>str.isdigit()</code> pode ser usado para verificar se a string <code>str</code> corresponde a um número.</p>
+<pre><code>def propagação_de_fake_news(matriz, x, y):
+#   ...
+
+n = int(input())
+matriz = []
+for _ in range(n):
+    matriz.append(list(input()))
+x, y = [int(i) for i in input().split()]
+
+for line in matriz:
+  print("".join(line))
+</code></pre>
+<h2>
+<a id="user-content-orientações" class="anchor" href="#orienta%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Orientações</h2>
+<ul>
+<li>Veja <a href="https://susy.ic.unicamp.br:9999/mc102multi/15">aqui</a> a página de submissão da tarefa.</li>
+<li>O arquivo a ser submetido deve se chamar lab15.py.</li>
+<li>No link "Arquivos auxiliares" há um arquivo compactado (aux15.zip) 
+que contém todos os arquivos de testes abertos (entradas e saídas 
+esperadas).</li>
+<li>O laboratório é composto de 10 testes abertos e 10 testes fechados.</li>
+<li>O limite máximo será de 20 submissões.</li>
+<li>Acesse o sistema SuSy com seu RA (apenas números) e a senha que você utiliza para fazer acesso ao sistema da DAC.</li>
+<li>Você deve seguir as instruções de submissão descritas no enunciado.</li>
+<li>Serão considerados apenas os resultados da última submissão.</li>
+<li>Esta tarefa tem peso 4.</li>
+<li>O prazo final para submissão é dia 18/07/2021 (domingo).</li>
+</ul>
+
+    </article>
+
+
+</body></html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Laboratório 03</title>        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="enunciado_files/css.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="enunciado_files/github-markdown.css">
+    <style>
+        .markdown-body {
+        box-sizing: border-box;
+        min-width: 200px;
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 45px;
+        font-family: 'Noto Sans', sans-serif;
+        }
+        .markdown-body h6 { margin-bottom: 0; }
+        .markdown-body h6 + ul li {
+        display: inline-block;
+        width: 100%;
+        max-width: 426px;
+        vertical-align: top;
+        }
+        .markdown-body h6 + ul li pre {
+          max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <article class="markdown-body">
+<h1>
+<a id="user-content-imposto-de-renda" class="anchor" href="#imposto-de-renda" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Imposto de Renda</h1>
+<p>Está chegando o momento de declarar o Imposto de Renda (IR), vamos 
+aprender um pouco sobre esse processo que aflige muitos brasileiros. 
+Neste laboratório vamos simular uma versão reduzida da declaração de IR 
+(para detalhes da versão completa consulte o <a href="https://www.gov.br/receitafederal/pt-br/assuntos/irpf/" rel="nofollow">site oficial</a>).</p>
+<p>O IR é um valor calculado a partir do rendimento obtido durante o ano
+ anterior. Algumas fontes de renda são isentas desse imposto, portanto 
+não são consideradas nesse cálculo. O valor resultante de fontes para as
+ quais o imposto é aplicado é o rendimento tributável. Alguns valores 
+podem ser abatidos desse rendimento antes do cálculo do imposto de 
+renda. O valor resultante após o abatimento é chamado de base de 
+cálculo. Existem duas formas de se fazer esse abatimento:</p>
+<ul>
+<li>
+<p>A partir do cálculo simplificado: um desconto de 20% é abatido do 
+rendimento tributável. Por exemplo, para um rendimento tributável de R$ 
+30.000,00, temos:</p>
+<pre><code> Base de cálculo = R$ 30.000,00 - 20% x R$ 30.000,00 = R$ 24.000,00
+</code></pre>
+</li>
+<li>
+<p>A partir do cálculo completo: cada tipo de gasto passível de 
+abatimento é considerado de forma independente. No nosso caso, 
+consideraremos o abatimento de gastos com previdência e com educação. O 
+gasto com previdência pode reduzir até 12% do rendimento tributável e o 
+gasto com educação pode reduzir até R$ 3.561,50. Por exemplo, para um 
+rendimento tributável de R$ 30.000,00, um gasto com previdência de R$ 
+3.000,00 e um gasto com educação de R$ 4.000,00, temos:</p>
+<pre><code> Base de cálculo = R$ 30.000,00 - R$ 3.000,00 - R$ 3.561,50 = R$ 23.438,50
+</code></pre>
+<p>Note que, o gasto com previdência foi abatido integralmente, pois é 
+menor que 12% do rendimento tributável. No caso do gasto com educação, 
+por outro lado, foi abatido apenas R$ 3.561,50.</p>
+</li>
+</ul>
+<p>A seguinte tabela nos fornece, para cada faixa de valores da base de cálculo, os valores utilizados para o cálculo do IR.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Base de cálculo (R$)</th>
+<th align="right">Alíquota (%)</th>
+<th align="right">Parcela a deduzir do IR (R$)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Até 22.847,76</td>
+<td align="right">0,0</td>
+<td align="right">0,00</td>
+</tr>
+<tr>
+<td align="center">Entre 22.847,77 e 33.919,80</td>
+<td align="right">7,5</td>
+<td align="right">1.713,58</td>
+</tr>
+<tr>
+<td align="center">Entre 33.919,81 e 45.012,60</td>
+<td align="right">15,0</td>
+<td align="right">4.257,57</td>
+</tr>
+<tr>
+<td align="center">Entre 45.012,61 e 55.976,16</td>
+<td align="right">22,5</td>
+<td align="right">7.633,51</td>
+</tr>
+<tr>
+<td align="center">Acima de 55.976,16</td>
+<td align="right">27,5</td>
+<td align="right">10.432,32</td>
+</tr>
+</tbody>
+</table>
+<p>O cálculo do IR é feito pela seguinte fórmula:</p>
+<pre><code>Valor do IR = Base de cálculo x Alíquota - Parcela a deduzir do IR
+</code></pre>
+<p>Por exemplo, o cálculo do IR com uma base de cálculo de R$ 28.500,00 seria feito da seguinte forma:</p>
+<pre><code>Valor do IR = R$ 28.500,00 x 7,5% - R$ 1.713,58
+Valor do IR = R$ 423,92
+</code></pre>
+<p>Parte do IR já é cobrada antes de você receber seu pagamento. Esse 
+valor é chamado de imposto retido na fonte. A partir da declaração de IR
+ é possível verificar se o valor do imposto devido (calculado como 
+descrito anteriormente) é maior ou menor que o imposto retido na fonte. 
+Caso o valor devido seja maior que o valor que já foi pago, você deve 
+pagar a diferença. Caso o valor pago seja maior que o valor devido, você
+ receberá a restituição da diferença.</p>
+<p>Nesta tarefa, você deverá utilizar os dados fornecidos para calcular o
+ valor do IR, realizando o abatimento pelo cálculo completo e pelo 
+simplificado, de forma a se determinar o valor do ajuste do IR, ou seja,
+ o valor a ser pago ou o valor a ser recebido como restituição.</p>
+<p>Em Python, a separação decimal é feita com o caractere "<strong>.</strong>" e não existe um caractere para a separação nos milhares. Ou seja, 4.500,50 é representado em Python como 4500.50.</p>
+<p>A entrada do seu programa será composta por quatro linhas, cada uma 
+com um valor real, representando o rendimento tributável total, o gasto 
+total com previdência, o gasto total com educação e o valor total do 
+imposto retido na fonte, respectivamente.</p>
+<pre><code>&lt;Rendimento tributável&gt;
+&lt;Gasto com previdência&gt;
+&lt;Gasto com educação&gt;
+&lt;Imposto retido na fonte&gt;
+</code></pre>
+<p>A saída deverá imprimir as bases de cálculo, os valores do IR e os 
+valores dos ajustes do IR (valores positivos indicando valores a serem 
+pagos e negativos indicando valores a serem recebidos, como 
+restituição), considerando tanto o cálculo simplificado, quanto o 
+completo, apresentados da seguinte forma:</p>
+<pre><code>Base de calculo (Simplificado): &lt;base de cálculo com o cálculo simplificado&gt;
+Base de calculo (Completo): &lt;base de cálculo com o cálculo completo&gt;
+Valor do IR (Simplificado): &lt;valor do IR obtido com o cálculo simplificado&gt;
+Valor do IR (Completo): &lt;valor do IR obtido com o cálculo completo&gt;
+Valor do ajuste (Simplificado): &lt;valor do ajuste obtido com o cálculo simplificado&gt;
+Valor do ajuste (Completo): &lt;valor do ajuste obtido com o cálculo completo&gt;
+</code></pre>
+<p>Exemplos de entradas e saídas esperadas pelo seu programa:</p>
+<h3>
+<a id="user-content-teste-01" class="anchor" href="#teste-01" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 01</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/03/dados/arq01.in">Entrada</a></p>
+<pre><code>21523.69
+4923.68
+2567.97
+37.48
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/03/dados/arq01.out">Saída</a></p>
+<pre><code>Base de calculo (Simplificado): 17218,95
+Base de calculo (Completo): 16372,88
+Valor do IR (Simplificado): 0,00
+Valor do IR (Completo): 0,00
+Valor do ajuste (Simplificado): -37,48
+Valor do ajuste (Completo): -37,48
+</code></pre>
+<h3>
+<a id="user-content-teste-02" class="anchor" href="#teste-02" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 02</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/03/dados/arq02.in">Entrada</a></p>
+<pre><code>33874.47
+9079.25
+4918.23
+251.29
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/03/dados/arq02.out">Saída</a></p>
+<pre><code>Base de calculo (Simplificado): 27099,58
+Base de calculo (Completo): 26248,03
+Valor do IR (Simplificado): 318,89
+Valor do IR (Completo): 255,02
+Valor do ajuste (Simplificado): 67,60
+Valor do ajuste (Completo): 3,73
+</code></pre>
+<h3>
+<a id="user-content-teste-03" class="anchor" href="#teste-03" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Teste 03</h3>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/03/dados/arq03.in">Entrada</a></p>
+<pre><code>49476.22
+6842.27
+1274.26
+2351.11
+</code></pre>
+<p><a href="https://susy.ic.unicamp.br:9999/mc102multi/03/dados/arq03.out">Saída</a></p>
+<pre><code>Base de calculo (Simplificado): 39580,98
+Base de calculo (Completo): 42264,81
+Valor do IR (Simplificado): 1679,58
+Valor do IR (Completo): 2082,15
+Valor do ajuste (Simplificado): -671,53
+Valor do ajuste (Completo): -268,96
+</code></pre>
+<h2>
+<a id="user-content-código-base" class="anchor" href="#c%C3%B3digo-base" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Código Base</h2>
+<p>No arquivo auxiliar lab03.py você irá encontrar um código base para 
+dar início ao processo de elaboração dessa tarefa. Além disso, nele você
+ encontrará a formatação para exibir os valores calculados, com duas 
+casas decimais, trocando o ponto pela vírgula como separador decimal:</p>
+<pre><code>print("Base de calculo (Simplificado):", format(base_simplificado, ".2f").replace(".", ","))
+print("Base de calculo (Completo):", format(base_completo, ".2f").replace(".", ","))
+print("Valor do IR (Simplificado):", format(ir_simplificado, ".2f").replace(".", ","))
+print("Valor do IR (Completo):", format(ir_completo, ".2f").replace(".", ","))
+print("Valor do ajuste (Simplificado):", format(ajuste_simplificado, ".2f").replace(".", ","))
+print("Valor do ajuste (Completo):", format(ajuste_completo, ".2f").replace(".", ","))
+</code></pre>
+<h2>
+<a id="user-content-orientações" class="anchor" href="#orienta%C3%A7%C3%B5es" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Orientações</h2>
+<ul>
+<li>Veja <a href="https://susy.ic.unicamp.br:9999/mc102multi/03">aqui</a> a página de submissão da tarefa.</li>
+<li>O arquivo a ser submetido deve se chamar lab03.py.</li>
+<li>No link "Arquivos auxiliares" há um arquivo compactado (aux03.zip) 
+que contém todos os arquivos de testes abertos (entradas e saídas 
+esperadas).</li>
+<li>O laboratório é composto de 10 testes abertos e 10 testes fechados.</li>
+<li>O limite máximo será de 20 submissões.</li>
+<li>Acesse o sistema SuSy com seu RA (apenas números) e a senha que você utiliza para fazer acesso ao sistema da DAC.</li>
+<li>Você deve seguir as instruções de submissão descritas no enunciado.</li>
+<li>Serão considerados apenas os resultados da última submissão.</li>
+<li>Esta tarefa tem peso 1.</li>
+<li>O prazo final para submissão é dia 25/04/2021 (domingo).</li>
+</ul>
+
+    </article>
+
+
+</body></html>

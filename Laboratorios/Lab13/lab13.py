@@ -1,8 +1,7 @@
 ###################################################
 # MC102 - Algoritmos e Programação de Computadores
 # Laboratório 13 - Super Trunfo
-# Nome: ROBERT WILLIAN POLLI - Data: 14/06/2021
-# RA: 187848
+# Data: 14/06/2021
 ###################################################
 
 indices = []
